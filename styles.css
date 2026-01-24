@@ -68,7 +68,7 @@ img{max-width:100%;display:block;border-radius:12px}
   content:""; position:absolute; inset:0; pointer-events:none;
   background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(203,174,122,.18) 50%, rgba(255,255,255,0) 100%);
   background-size: 220% 100%; mix-blend-mode:soft-light; opacity:.6;
-  animation: glint 7.5s ease-in-out infinite;
+  animation: glint 12s ease-in-out infinite;
 }
 @keyframes glint{ 0%{ background-position:-220% 0 } 100%{ background-position:220% 0 } }
 
@@ -224,3 +224,6 @@ img{max-width:100%;display:block;border-radius:12px}
 .ornament--tr{top:-10px;right:-10px;transform:scaleX(-1);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-width='1.1' stroke-opacity='.35'%3E%3Cpath d='M10 140c25-20 40-50 70-80 30-30 50-40 70-50'/%3E%3Cpath d='M0 160c30-10 50-30 80-60 30-30 40-40 65-55'/%3E%3C/g%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}
 .ornament--bl{bottom:-10px;left:-10px;transform:scaleY(-1);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-width='1.1' stroke-opacity='.35'%3E%3Cpath d='M10 140c25-20 40-50 70-80 30-30 50-40 70-50'/%3E%3Cpath d='M0 160c30-10 50-30 80-60 30-30 40-40 65-55'/%3E%3C/g%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}
 .ornament--br{bottom:-30px;right:-30px;transform:scale(-1);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-width='1.1' stroke-opacity='.35'%3E%3Cpath d='M10 140c25-20 40-50 70-80 30-30 50-40 70-50'/%3E%3Cpath d='M0 160c30-10 50-30 80-60 30-30 40-40 65-55'/%3E%3C/g%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}
+
+.logo text{ animation: logoPulse 18s ease-in-out infinite }
+@keyframes logoPulse{ 0%,92%,100%{opacity:1} 46%{opacity:.88} }
