@@ -1,5 +1,5 @@
 :root{
-  /* Paletă caldă: ivory, accente aurii-bej, antracit */
+  /* Paletă caldă: ivory, accente aurii-bej, antracit + accent confirmare */
   --ivory:#FFFCF6;
   --bg:#FFFBF8;
   --bg-soft:#F7F4EF;
@@ -8,8 +8,12 @@
   --ink:#222222;          /* antracit */
   --muted:#6F6F6F;
   --line:#EAE2D6;
+  --confirm-bg:#DFEBDD;   /* verde-salvie foarte deschis */
+  --confirm-ink:#2E5B3A;  /* verde potrivit pentru confirmare */
+  --calendar-bg:#F1E7DA;  /* crem-bej pentru calendar */
   --radius:14px;
-  --shadow: 0 10px 28px rgba(0,0,0,.08);
+  --shadow: 0 12px 30px rgba(0,0,0,.08);
+  --softshadow: 0 4px 12px rgba(0,0,0,.03);
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -22,13 +26,15 @@ body{
 }
 img{max-width:100%;display:block;border-radius:12px}
 .container{width:min(1100px, 92vw);margin-inline:auto}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
 .skip-link{position:absolute;left:-9999px;top:auto}
 .skip-link:focus{left:1rem;top:1rem;background:#000;color:#fff;padding:.5rem 1rem;border-radius:8px;z-index:1000}
 
 /* Antet & navigație */
 .site-header{position:sticky;top:0;z-index:40;background:rgba(255,251,248,.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem 0}
-.brand{font-family:'Playfair Display', serif;font-weight:600;font-size:1.2rem;letter-spacing:.3px;color:var(--ink);text-decoration:none}
+.brand{text-decoration:none;display:flex;align-items:center;gap:.6rem;color:var(--ink)}
+.logo{height:40px; width:auto; display:block; filter: drop-shadow(0 2px 8px rgba(0,0,0,.06));}
 .nav__links{display:flex;gap:.6rem;align-items:center;list-style:none;margin:0;padding:0}
 .nav__links a{color:var(--ink);text-decoration:none;padding:.5rem .8rem;border-radius:999px}
 .nav__links a:hover{background:#f2efe9}
@@ -49,17 +55,78 @@ img{max-width:100%;display:block;border-radius:12px}
 }
 .hero__inner{text-align:center}
 .eyebrow{letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-size:.85rem}
-.hero__title{font-family:'Playfair Display', serif;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.1;margin:.2rem 0 .6rem;color:var(--ink)}
+.hero__title{font-family:'Playfair Display', serif;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.1;margin:.2rem 0 .6rem;color:var(--ink);position:relative}
 .hero__title span{color:var(--gold-ink)}
+
+/* Glint fin pe titlu: o sclipire foarte discretă care traversează textul */
+.title-glint{background: none; position: relative}
+.title-glint::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(203,174,122,.18) 50%, rgba(255,255,255,0) 100%);
+  background-size: 220% 100%; mix-blend-mode:soft-light; opacity:.6;
+  animation: glint 7.5s ease-in-out infinite;
+}
+@keyframes glint{ 0%{ background-position:-220% 0 } 100%{ background-position:220% 0 } }
+
+/* Particule confetti minimaliste (CSS-only): */
+.title-wrap{position:relative;display:inline-block}
+.confetti{position:absolute;inset:-8px -12px;pointer-events:none;overflow:hidden}
+/* folosim 12 particule create prin multiple background-uri */
+.confetti::before, .confetti::after{
+  content:""; position:absolute; inset:0; background-repeat:no-repeat; opacity:.38; filter: blur(.15px);
+  animation: fall 10s linear infinite;
+}
+.confetti::before{
+  background-image:
+    radial-gradient(2px 2px at 10% -10%, rgba(203,174,122,.55) 50%, transparent 52%),
+    radial-gradient(1.8px 1.8px at 30% -5%,  rgba(169,138,89,.45) 50%, transparent 52%),
+    radial-gradient(1.6px 1.6px at 50% -12%, rgba(203,174,122,.45) 50%, transparent 52%),
+    radial-gradient(2px 2px at 70% -8%,  rgba(203,174,122,.35) 50%, transparent 52%),
+    radial-gradient(1.8px 1.8px at 85% -14%, rgba(169,138,89,.40) 50%, transparent 52%),
+    radial-gradient(1.6px 1.6px at 20% -16%, rgba(203,174,122,.30) 50%, transparent 52%);
+}
+.confetti::after{
+  background-image:
+    radial-gradient(2px 2px at 15% -18%, rgba(203,174,122,.40) 50%, transparent 52%),
+    radial-gradient(1.8px 1.8px at 35% -20%, rgba(169,138,89,.35) 50%, transparent 52%),
+    radial-gradient(1.6px 1.6px at 55% -15%, rgba(203,174,122,.32) 50%, transparent 52%),
+    radial-gradient(2px 2px at 75% -22%, rgba(203,174,122,.34) 50%, transparent 52%),
+    radial-gradient(1.8px 1.8px at 90% -24%, rgba(169,138,89,.30) 50%, transparent 52%),
+    radial-gradient(1.6px 1.6px at 25% -26%, rgba(203,174,122,.28) 50%, transparent 52%);
+  animation-duration: 13s;
+}
+@keyframes fall{
+  0%  { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0 }
+  100%{ background-position: 0 90px, 0 110px, 0 100px, 0 120px, 0 130px, 0 115px }
+}
+
 .date{font-size:1.1rem;color:#565656;margin:.2rem 0 1.2rem}
-.hero__cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
-.hero__overlay{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='900' height='900' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-opacity='.22'%3E%3Cpath d='M20 160c18-12 36-32 54-52s36-32 54-52'/%3E%3Cpath d='M0 180c26-16 46-36 72-66s42-42 62-58'/%3E%3C/g%3E%3C/svg%3E");opacity:.22;background-repeat:no-repeat;background-size:900px;background-position: 120% -40%;pointer-events:none}
+.hero__cta{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.hero__overlay{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='900' height='900' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-opacity='.22'%3E%3Cpath d='M20 160c18-12 36-32 54-52s36-32 54-52'/%3E%3Cpath d='M0 180c26-16 46-36 72-66s42-42 62-58'/%3E%3C/g%3E%3C/svg%3E");opacity:.22;background-repeat:no-repeat;background-size:900px;background-position: 120% -40%;pointer-events:none;animation: drift 18s ease-in-out infinite alternate}
+@keyframes drift { from { transform: translateY(0)} to { transform: translateY(10px)} }
+
+/* Efect subtil: „praf de aur” în Hero */
+.hero-sparkle{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(2px 2px at 10% 20%, rgba(203,174,122,.35) 40%, transparent 41%),
+    radial-gradient(2px 2px at 30% 40%, rgba(203,174,122,.28) 40%, transparent 41%),
+    radial-gradient(1.8px 1.8px at 70% 30%, rgba(203,174,122,.30) 40%, transparent 41%),
+    radial-gradient(2px 2px at 85% 60%, rgba(203,174,122,.25) 40%, transparent 41%);
+  animation: spark-move 26s linear infinite;
+  opacity:.34; mix-blend-mode:soft-light; filter: blur(.2px);
+}
+@keyframes spark-move{ 0%{ background-position: 0 0, 0 0, 0 0, 0 0 } 100%{ background-position: 120px 80px, -120px 60px, 140px -80px, -140px -60px } }
 
 /* Secțiuni */
 .section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .section--soft{background: linear-gradient(180deg, var(--bg) 0, var(--bg-soft) 100%)}
 .section__title{font-family:'Playfair Display', serif;font-size:clamp(1.7rem,3.6vw,2.4rem);margin:0 0 1rem;position:relative}
-.section__title:after{content:"";display:block;width:80px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:.6rem auto 0}
+.section__title:after{content:"";display:block;width:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:.6rem auto 0;animation: underline 1s ease forwards}
+@keyframes underline { to { width: 80px } }
+
+/* Proza centrată */
+.prose{max-width:72ch;margin-inline:auto}
+.prose--center{ text-align:center }
 
 /* Rețea */
 .grid{display:grid;gap:1.1rem}
@@ -68,6 +135,8 @@ img{max-width:100%;display:block;border-radius:12px}
 
 /* Carduri */
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem;box-shadow:var(--shadow)}
+#parinti .card{box-shadow: var(--softshadow)}
+#parinti .card--inmem{box-shadow: var(--softshadow);}
 .card--inmem{background:#FBF9F5;border:1px solid #E6DED1}
 .card__head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.4rem}
 .badge{display:inline-flex;align-items:center;justify-content:center;background:var(--ivory);border:1px solid var(--line);color:var(--gold-ink);border-radius:8px;padding:.2rem .5rem;font-weight:600}
@@ -77,7 +146,7 @@ img{max-width:100%;display:block;border-radius:12px}
 .nasi{display:flex;align-items:center;justify-content:center}
 .nasi__names{font-family:'Playfair Display', serif;font-size:1.2rem;margin:0;color:var(--ink)}
 
-/* In memoriam */
+/* In memoria */
 .inmem__line{margin:.2rem 0 .2rem;color:#3a3a3a}
 .inmem__note{margin:0;color:#6b6b6b;font-size:.95rem}
 
@@ -87,19 +156,45 @@ img{max-width:100%;display:block;border-radius:12px}
 .timeline__item:last-child{border-bottom:none}
 .timeline__item time{font-weight:600;color:var(--gold-ink)}
 
-/* RSVP */
-.rsvp-actions{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
-.rsvp-iframe{margin-top:1rem}
-.hint{color:var(--muted);font-size:.95rem;margin-top:1rem}
+/* Countdown */
+.countdown{display:grid;grid-template-columns:repeat(4,minmax(80px,1fr));gap:12px;width:min(720px,100%);margin:0 auto}
+.countdown__item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow: var(--shadow)}
+.countdown__item span{display:block;font-family:'Playfair Display', serif;font-size:clamp(1.4rem,1rem + 2vw,2.2rem);color:var(--gold-ink)}
+.countdown__item small{color:#6f6f6f}
+@media (max-width:560px){.countdown{grid-template-columns:repeat(2,1fr)}}
+
+/* Add to calendar */
+.addcal{position:relative;display:inline-block}
+.addcal__menu{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);min-width:280px;padding:.4rem;z-index:20}
+.addcal__item{display:block;width:100%;text-align:left;padding:.55rem .7rem;border-radius:8px;border:0;background:transparent;color:var(--ink);text-decoration:none;cursor:pointer}
+.addcal__item:hover{background:#F4EADF}
 
 /* Butoane */
-.btn{display:inline-block;border-radius:999px;padding:.7rem 1.1rem;text-decoration:none;border:1px solid transparent;cursor:pointer;font-weight:600}
+.btn{
+  display:inline-block;border-radius:999px;padding:.7rem 1.1rem;text-decoration:none;border:1px solid transparent;cursor:pointer;
+  font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-weight:600; font-size:1rem;
+  min-width:180px; line-height:1; text-align:center
+}
+.btn--same{min-height:44px;}
 .btn--primary{background:var(--gold);color:white}
 .btn--primary:hover{filter:brightness(.96)}
+.btn--confirm{background:var(--confirm-bg);color:var(--confirm-ink);border:1px solid rgba(46,91,58,.18)}
+.btn--confirm:hover{filter:brightness(.98)}
+.btn--calendar{background:var(--calendar-bg);color:var(--ink);border:1px solid rgba(0,0,0,.08)}
+.btn--calendar:hover{filter:brightness(.98)}
 .btn--ghost{background:transparent;border-color:rgba(0,0,0,.15);color:var(--ink)}
 .btn--ghost:hover{background:rgba(0,0,0,.04)}
 .btn--soft{background:#fff;border:1px solid var(--line);color:var(--ink)}
 .btn--pill{background:#F4EADF}
+
+/* Hover tilt & glow */
+.hover-tilt{transition: transform .25s ease, box-shadow .25s ease}
+.hover-tilt:hover{transform: translateY(-4px) rotateX(1deg) rotateY(-1deg); box-shadow: 0 14px 40px rgba(0,0,0,.12)}
+.glow{box-shadow: 0 0 0 0 rgba(201,174,122,.6); animation: glow 2.6s ease-in-out infinite}
+@keyframes glow { 0%{ box-shadow: 0 0 0 0 rgba(201,174,122,.55)} 70%{ box-shadow: 0 0 0 10px rgba(201,174,122,0)} 100%{ box-shadow: 0 0 0 0 rgba(201,174,122,0)} }
+
+/* RSVP/Răspuns */
+.hint{color:var(--muted);font-size:.95rem;margin-top:1rem}
 
 /* Footer */
 .footer{padding:2rem 0;background:#fff;border-top:1px solid rgba(0,0,0,.06);text-align:center}
@@ -110,7 +205,8 @@ img{max-width:100%;display:block;border-radius:12px}
 .reveal.in-view{opacity:1;transform:none}
 
 /* Ornamente colțuri */
-.ornament{position:fixed;width:160px;height:160px;z-index:0;opacity:.45;pointer-events:none}
+.ornament{position:fixed;width:160px;height:160px;z-index:0;opacity:.45;pointer-events:none;animation: leaf 12s ease-in-out infinite alternate}
+@keyframes leaf { from { transform: rotate(0deg)} to { transform: rotate(3deg)} }
 .ornament--tl{top:-20px;left:-20px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-width='1.1' stroke-opacity='.35'%3E%3Cpath d='M10 140c25-20 40-50 70-80 30-30 50-40 70-50'/%3E%3Cpath d='M0 160c30-10 50-30 80-60 30-30 40-40 65-55'/%3E%3C/g%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}
 .ornament--tr{top:-10px;right:-10px;transform:scaleX(-1);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-width='1.1' stroke-opacity='.35'%3E%3Cpath d='M10 140c25-20 40-50 70-80 30-30 50-40 70-50'/%3E%3Cpath d='M0 160c30-10 50-30 80-60 30-30 40-40 65-55'/%3E%3C/g%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}
 .ornament--bl{bottom:-10px;left:-10px;transform:scaleY(-1);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23CBAE7A' stroke-width='1.1' stroke-opacity='.35'%3E%3Cpath d='M10 140c25-20 40-50 70-80 30-30 50-40 70-50'/%3E%3Cpath d='M0 160c30-10 50-30 80-60 30-30 40-40 65-55'/%3E%3C/g%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat}

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Invitație nuntă – Antonii & Iulia (6 iunie 2026)</title>
-  <meta name="description" content="Invitație la nunta lui Antonii & Iulia — program, locații, RSVP. Elegant, minimalist, mobil-first." />
+  <title>Invitație nuntă – Iulia & Antonii (6 iunie 2026)</title>
+  <meta name="description" content="Invitație la nunta lui Iulia & Antonii — program, locații, răspuns. Elegant, minimalist, mobil-first." />
 
   <!-- Fonturi: serif pentru titluri + sans-serif pentru corp -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,29 @@
 
   <header class="site-header">
     <nav class="nav container" aria-label="Principal">
-      <a class="brand" href="#acasa" aria-label="Acasă">Antonii & Iulia</a>
+      <a class="brand" href="#acasa" aria-label="Acasă">
+        <!-- Logo SVG: monogramă stilizată + nume -->
+        <svg class="logo" viewBox="0 0 240 60" role="img" aria-labelledby="logoTitle logoDesc">
+          <title id="logoTitle">Iulia & Antonii</title>
+          <desc id="logoDesc">Monogramă cu inițialele I și A, în stil elegant, cu accente aurii-bej</desc>
+          <defs>
+            <linearGradient id="gGold" x1="0" x2="1">
+              <stop offset="0%" stop-color="#CBAE7A"/>
+              <stop offset="100%" stop-color="#A98A59"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(8,6)">
+            <circle cx="24" cy="24" r="22" fill="none" stroke="url(#gGold)" stroke-width="1.6"/>
+            <path d="M8 40c6-2 10-6 14-12" fill="none" stroke="url(#gGold)" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M40 8c-6 2-10 6-14 12" fill="none" stroke="url(#gGold)" stroke-width="1.2" stroke-linecap="round"/>
+            <text x="24" y="31" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="26" fill="url(#gGold)">IA</text>
+          </g>
+          <text x="80" y="30" font-family="'Playfair Display', serif" font-weight="600" font-size="22" fill="#222">Iulia</text>
+          <text x="140" y="30" font-family="'Playfair Display', serif" font-weight="600" font-size="22" fill="#222">&amp;</text>
+          <text x="162" y="30" font-family="'Playfair Display', serif" font-weight="600" font-size="22" fill="#222">Antonii</text>
+        </svg>
+        <span class="sr-only">Iulia & Antonii</span>
+      </a>
       <button class="nav__toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Deschide meniul">☰</button>
       <ul id="navMenu" class="nav__links">
         <li><a href="#invitatie">Invitație</a></li>
@@ -31,7 +53,7 @@
         <li><a href="#parinti">Părinți</a></li>
         <li><a href="#program">Programul zilei</a></li>
         <li><a href="#locatii">Locații</a></li>
-        <li><a class="btn btn--pill" href="#rsvp">RSVP</a></li>
+        <li><a class="btn btn--pill" href="#raspuns">Răspuns</a></li>
       </ul>
     </nav>
   </header>
@@ -40,35 +62,50 @@
     <!-- Erou / Hero -->
     <section id="acasa" class="hero" aria-label="Invitație nuntă">
       <div class="container hero__inner">
-        <p class="eyebrow reveal">Vă invităm cu drag la</p>
-        <h1 class="hero__title reveal" style="--delay:100ms">Antonii <span>&amp;</span> Iulia</h1>
-        <p class="date reveal" style="--delay:200ms">6 iunie 2026</p>
-        <div class="countdown reveal" style="--delay:300ms" aria-label="Numărătoare inversă până la nuntă">
-          <div class="countdown__item"><span id="zile">–</span><small>Zile</small></div>
-          <div class="countdown__item"><span id="ore">–</span><small>Ore</small></div>
-          <div class="countdown__item"><span id="minute">–</span><small>Minute</small></div>
-          <div class="countdown__item"><span id="secunde">–</span><small>Secunde</small></div>
+        <p class="eyebrow reveal">Vă invităm cu drag</p>
+        <div class="title-wrap">
+          <h1 class="hero__title reveal title-glint" style="--delay:120ms">Iulia <span>&amp;</span> Antonii</h1>
+          <!-- Particule confetti minimaliste generate prin CSS -->
+          <div class="confetti" aria-hidden="true"></div>
         </div>
-        <div class="hero__cta reveal" style="--delay:420ms">
+        <p class="date reveal" style="--delay:260ms">6 iunie 2026</p>
+        <div class="countdown reveal" style="--delay:380ms" aria-label="Numărătoare inversă până la nuntă">
+          <div class="countdown__item flip"><span id="zile">–</span><small>Zile</small></div>
+          <div class="countdown__item flip"><span id="ore">–</span><small>Ore</small></div>
+          <div class="countdown__item flip"><span id="minute">–</span><small>Minute</small></div>
+          <div class="countdown__item flip"><span id="secunde">–</span><small>Secunde</small></div>
+        </div>
+        <div class="hero__cta reveal" style="--delay:520ms">
           <a href="#invitatie" class="btn btn--primary">Citește invitația</a>
-          <a href="#rsvp" class="btn btn--ghost">Confirmă prezența</a>
+          <a href="#raspuns" class="btn btn--confirm">Confirmă prezența</a>
+          <!-- Adaugă în calendar (varianta unică) -->
+          <div class="addcal">
+            <button class="btn btn--calendar btn--same" id="btnCal">Adaugă în calendar ▾</button>
+            <div class="addcal__menu" id="calMenu" hidden>
+              <button class="addcal__item" id="dlICS">Descarcă fișier ICS</button>
+              <a class="addcal__item" id="gcalAll" target="_blank" rel="noopener">Google Calendar – Nunta Iulia & Antonii</a>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="hero-sparkle" aria-hidden="true"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
     </section>
 
     <!-- Invitație -->
     <section id="invitatie" class="section section--soft container">
-      <div class="reveal">
+      <div class="reveal prose prose--center">
         <h2 class="section__title">Invitație</h2>
         <p>
-          Cu inimile pline de bucurie, alături de familiile noastre și cu binecuvântarea nașilor,
-          <strong> Alexandru și Dumi Cleminte</strong>,
-          vă invităm să ne fiți aproape la celebrarea căsătoriei noastre, în data de
+          Cu inimile pline de recunoștință și emoție, împărtășim cu voi bucuria de a porni împreună
+          într‑o nouă călătorie. Cu binecuvântarea nașilor, <strong>Dumi și Alexandru</strong>,
+          vă invităm să ne fiți aproape la celebrarea căsătoriei noastre, în
           <strong>06 iunie 2026</strong>.
         </p>
         <p>
-          Vă așteptăm cu drag să ne fiți martori la promisiunea noastră și să sărbătorim împreună până la miezul nopții.
+          Vă așteptăm cu drag la cununia religioasă și la petrecerea care urmează, pentru a aduna împreună
+          amintiri calde, zâmbete sincere și îmbrățișări de neuitat. Orice pas al acestei zile este mai frumos
+          știindu‑vă aproape.
         </p>
       </div>
     </section>
@@ -77,8 +114,8 @@
     <section id="nasi" class="section container">
       <div class="reveal">
         <h2 class="section__title">Nași</h2>
-        <div class="card nasi">
-          <p class="nasi__names"> Alexandru și Dumi Cleminte</p>
+        <div class="card nasi hover-tilt">
+          <p class="nasi__names">Cleminte Dumi și Alexandru</p>
         </div>
       </div>
     </section>
@@ -89,13 +126,12 @@
         <h2 class="section__title">Părinți</h2>
       </div>
       <div class="grid grid--2col">
-        <article class="card reveal">
+        <article class="card card--softshadow reveal hover-tilt">
           <h3>Părinții miresei</h3>
-          <p><strong>Dumitru</strong> și <strong>Nela Onică</strong></p>
+          <p><strong>Nela</strong> și <strong>Dumitru Onică</strong></p>
         </article>
-        <article class="card card--inmem reveal" style="--delay:120ms" aria-label="În amintire">
-          <h3>În memoriam</h3>
-          <p class="inmem__line">† În amintirea lui <strong>Mihail</strong> și a <strong>Marinei Gortolomei</strong></p>
+        <article class="card card--inmem card--softshadow reveal hover-tilt" style="--delay:120ms">
+          <p class="inmem__line">† În amintirea <strong>Marinei</strong> și a lui <strong>Mihail Gortolomei</strong></p>
           <p class="inmem__note">Părinții mirelui – pomeniți cu drag și recunoștință.</p>
         </article>
       </div>
@@ -130,18 +166,18 @@
         <h2 class="section__title">Locații</h2>
       </div>
       <div class="grid grid--2col">
-        <article class="card reveal">
+        <article class="card reveal hover-tilt">
           <div class="card__head">
             <h3>Biserica Ortodoxă „Sfântul Gheorghe” & „Sfinții Arhangheli Mihail și Gavril”</h3>
-            <span class="badge">14:30</span>
+            <span class="badge glow">14:30</span>
           </div>
           <p class="card__desc">Ceremonia religioasă</p>
           <a class="btn btn--soft" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ZTxDLim4A2ULnZtv5">Vezi pe Google Maps</a>
         </article>
-        <article class="card reveal" style="--delay:120ms">
+        <article class="card reveal hover-tilt" style="--delay:120ms">
           <div class="card__head">
             <h3>Palatul Elisee, Bârlad</h3>
-            <span class="badge">19:00</span>
+            <span class="badge glow">19:00</span>
           </div>
           <p class="card__desc">Recepție & petrecere</p>
           <a class="btn btn--soft" target="_blank" rel="noopener" href="https://maps.app.goo.gl/hwWJBvGrsV6SLSSV7">Vezi pe Google Maps</a>
@@ -149,33 +185,85 @@
       </div>
     </section>
 
-    <!-- RSVP -->
-    <section id="rsvp" class="section container">
+    <!-- Răspuns / Contact miri -->
+    <section id="raspuns" class="section container">
       <div class="reveal">
-        <h2 class="section__title">RSVP</h2>
-        <p>Vă rugăm să confirmați prezența completând formularul de mai jos. Răspunsurile sunt <strong>confidențiale</strong> și vizibile numai organizatorilor.</p>
+        <h2 class="section__title">Răspuns</h2>
+        <p>Vă rugăm să confirmați prezența completând formularul. Răspunsurile sunt <strong>confidențiale</strong> și vizibile numai organizatorilor.</p>
       </div>
 
-      <!-- Varianta recomandată: buton către Google Form (într-o filă nouă) -->
-      <div class="rsvp-actions reveal">
-        <!-- Înlocuiți URL-ul de mai jos cu linkul formularului vostru Google Forms -->
-        <a class="btn btn--primary" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/FORM_ID/viewform">Completează formularul</a>
+      <div class="grid grid--2col">
+        <div class="card reveal">
+          <h3>Confirmare prin formular</h3>
+          <p>Completați formularul online pentru a ne transmite numele și numărul de invitați.</p>
+          <a class="btn btn--primary" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/FORM_ID/viewform">Completează formularul</a>
+        </div>
+        <div class="card reveal" style="--delay:120ms">
+          <h3>Contact miri</h3>
+          <p>Ne puteți suna oricând pentru întrebări sau confirmări.</p>
+          <p><strong>Numărul miresei:</strong> <a href="tel:+40751391832">+40 751 391 832</a></p>
+          <p><strong>Numărul mirelui:</strong> <a href="tel:+40745197444">+40 745 197 444</a></p>
+        </div>
       </div>
-
-      <!-- Opțional: integrare directă prin iframe (decomentați blocul și înlocuiți src) -->
-      <!--
-      <div class="rsvp-iframe reveal" style="--delay:120ms">
-        <iframe title="RSVP – Google Form" src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" width="100%" height="880" frameborder="0" marginheight="0" marginwidth="0">Se încarcă…</iframe>
-      </div>
-      -->
 
       <p class="hint reveal">Câmpuri necesare în Google Form: <em>Nume</em>, <em>Prenume</em>, <em>Număr de invitați</em>.</p>
     </section>
+
+    <!-- ===== Noi secțiuni: Atracții & Cazări ===== -->
+    <section id="informatii" class="section section--soft container">
+      <div class="reveal">
+        <h2 class="section__title">Informații utile pentru oaspeți</h2>
+      </div>
+      <div class="grid grid--2col">
+        <!-- Categoria 1: Atracții -->
+        <article class="card reveal">
+          <h3>Atracții turistice din Bârlad, județul Vaslui</h3>
+          <h4>🏛️ Obiective culturale și istorice</h4>
+          <ul>
+            <li><strong>Muzeul „Vasile Pârvan”</strong> – unul dintre cele mai importante muzee din Moldova, cu secții de istorie, arheologie, etnografie, științele naturii și artă [primariabarlad.ro], [tripadvisor.com]</li>
+            <li><strong>Pavilionul Expozițional „Marcel Guguianu”</strong> – muzeu de artă modernă, dedicat sculptorului Marcel Guguianu; include și planetariu [primariabarlad.ro], [tripadvisor.com]</li>
+            <li><strong>Teatrul „Victor Ion Popa”</strong> – instituție culturală reprezentativă pentru oraș, cu spectacole de teatru și evenimente artistice [primariabarlad.ro]</li>
+            <li><strong>Biserica Domnească „Sf. Gheorghe”</strong> – ctitorie din secolul al XVII‑lea, asociată domnitorului Vasile Lupu [Obiective...tul Vaslui]</li>
+          </ul>
+          <h4>🌳 Natură și relaxare</h4>
+          <ul>
+            <li><strong>Grădina Publică Bârlad</strong> – parc central, ideal pentru plimbări și relaxare [primariabarlad.ro]</li>
+            <li><strong>Grădina Zoologică Bârlad</strong> – una dintre cele mai vechi grădini zoologice din România, potrivită pentru familii cu copii [primariabarlad.ro], [tripadvisor.com]</li>
+            <li><strong>Parcul „Mihai Eminescu”</strong> – spațiu verde urban, aproape de centru [primariabarlad.ro]</li>
+          </ul>
+          <h4>🔭 Educație și divertisment</h4>
+          <ul>
+            <li><strong>Observatorul Astronomic și Planetariul Bârlad</strong> – parte a complexului muzeal, foarte apreciat de tineri și pasionați de astronomie [primariabarlad.ro]</li>
+            <li><strong>Centrul Național de Informare și Promovare Turistică Bârlad</strong> – punct util pentru turiști, cu materiale și informații locale [primariabarlad.ro], [turismbarlad.ro]</li>
+          </ul>
+        </article>
+
+        <!-- Categoria 2: Cazări -->
+        <article class="card reveal" style="--delay:120ms">
+          <h3>Cazări în Bârlad, județul Vaslui</h3>
+          <h4>🏨 Hoteluri</h4>
+          <ul>
+            <li><strong>Hotel Moldova Bârlad (★★★)</strong> – situat central, hotel cunoscut, renovat, cu restaurant și bar [roturistic.ro], [tripadvisor.com]</li>
+            <li><strong>Hotel Premier Bârlad (★★★)</strong> – apreciat pentru confort, curățenie și poziționare centrală [tripadvisor.com]</li>
+            <li><strong>N&S Hotel Bârlad (★★★)</strong> – potrivit pentru călătorii de afaceri, parcare proprie [portalturism.ro], [roturistic.ro]</li>
+            <li><strong>Hotel Ro & Mario</strong> – opțiune economică, situată în oraș [tripadvisor.com]</li>
+          </ul>
+          <h4>🏡 Pensiuni și alte tipuri de cazare</h4>
+          <ul>
+            <li><strong>Pensiunea Mira (★★★★)</strong> – pensiune modernă, restaurant, piscină sezonieră, situată pe E581 [pensiunea-mira.ro]</li>
+            <li><strong>Pensiunea Gallamar</strong> – foarte bine cotată, acceptă animale de companie [booking.com], [tripadvisor.com]</li>
+            <li><strong>Pensiunea Fabian</strong> – situată la intrarea în oraș, potrivită pentru tranzit [tripadvisor.com]</li>
+            <li><strong>Cazare Bârlad (apartamente / camere)</strong> – mai multe locații tip apartament (Cazare Bârlad 3, 4, 5; Cozy Studios etc.) disponibile pe platforme online [booking.com]</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p>Cu drag, <strong>Antonii & Iulia</strong></p>
+      <p>Cu drag, <strong>Iulia & Antonii</strong></p>
       <p class="fine-print">© 2026 · Mulțumim că faceți parte din povestea noastră.</p>
     </div>
   </footer>
@@ -210,7 +298,8 @@
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
     // ===== Numărătoare inversă (până la 06.06.2026 14:30) =====
-    const dataNunta = new Date('2026-06-06T14:30:00'); // ora locală
+    const dataCeremonie = new Date('2026-06-06T14:30:00'); // local
+
     const elZ = document.getElementById('zile');
     const elO = document.getElementById('ore');
     const elM = document.getElementById('minute');
@@ -218,7 +307,7 @@
 
     function tick() {
       const acum = new Date();
-      const diff = dataNunta - acum;
+      const diff = dataCeremonie - acum;
       if (diff <= 0) {
         elZ.textContent = '0'; elO.textContent = '00'; elM.textContent = '00'; elS.textContent = '00';
         return;
@@ -234,6 +323,90 @@
     }
     tick();
     const intId = setInterval(tick, 1000);
+
+    // ===== Add to Calendar (un singur eveniment) =====
+    const CER_LOC = 'Biserica Ortodoxă „Sfântul Gheorghe” & „Sfinții Arhangheli Mihail și Gavril”';
+    const CER_MAP = 'https://maps.app.goo.gl/ZTxDLim4A2ULnZtv5';
+    const PET_LOC = 'Palatul Elisee, Bârlad';
+    const PET_MAP = 'https://maps.app.goo.gl/hwWJBvGrsV6SLSSV7';
+
+    function toGCalLink(title, start, end, details){
+      const fmt = (d)=>{
+        const z = new Date(d);
+        return z.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
+      };
+      const params = new URLSearchParams({
+        action:'TEMPLATE',
+        text: title,
+        dates: `${fmt(start)}/${fmt(end)}`,
+        details
+      });
+      return `https://calendar.google.com/calendar/render?${params.toString()}`;
+    }
+
+    function buildICS(){
+      // Eveniment unic: 14:30–23:59 (ora locală -> UTC în ICS)
+      const startUTC = new Date(Date.UTC(2026,5,6,11,30)); // 14:30 EEST ≈ 11:30Z
+      const endUTC   = new Date(Date.UTC(2026,5,6,20,59)); // 23:59 EEST ≈ 20:59Z
+
+      const stamp = new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
+      const fmt = (d)=> d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
+      const siteUrl = location.href;
+
+      const desc = [
+        'Program:',
+        `- Cununia religioasă: 14:30 — ${CER_LOC} (${CER_MAP})`,
+        `- Petrecerea: 19:00 — ${PET_LOC} (${PET_MAP})`,
+        `Detalii: ${siteUrl}`
+      ].join('\\n');
+
+      const event = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Iulia & Antonii//Invitație Nuntă//RO',
+        'BEGIN:VEVENT',
+        `UID:all-${stamp}@iulia-antonii`,
+        `DTSTAMP:${stamp}`,
+        `DTSTART:${fmt(startUTC)}`,
+        `DTEND:${fmt(endUTC)}`,
+        'SUMMARY:Nunta – Iulia & Antonii',
+        `DESCRIPTION:${desc}`,
+        'END:VEVENT',
+        'END:VCALENDAR' ].join('\n');
+
+      return event;
+    }
+
+    // Meniu calendar
+    const btnCal = document.getElementById('btnCal');
+    const calMenu = document.getElementById('calMenu');
+    const dl = document.getElementById('dlICS');
+    const gcalAll = document.getElementById('gcalAll');
+
+    btnCal.addEventListener('click', ()=>{
+      const open = !calMenu.hasAttribute('hidden');
+      if(open){ calMenu.setAttribute('hidden', ''); }
+      else { calMenu.removeAttribute('hidden'); }
+    });
+    document.addEventListener('click',(e)=>{
+      if(!calMenu.contains(e.target) && e.target!==btnCal){ calMenu.setAttribute('hidden',''); }
+    });
+
+    // Configurează linkul Google Calendar
+    const gStart = new Date('2026-06-06T14:30:00');
+    const gEnd   = new Date('2026-06-06T23:59:00');
+    const details = `Program%3A%0A- Cununia religioas3%3A 14%3A30  ${CER_LOC} (${CER_MAP})%0A- Petrecerea%3A 19%3A00  ${PET_LOC} (${PET_MAP})`;
+    gcalAll.href = toGCalLink('Nunta – Iulia & Antonii', gStart, gEnd, decodeURIComponent(details));
+
+    // Descărcare ICS
+    dl.addEventListener('click', ()=>{
+      const blob = new Blob([buildICS()], {type:'text/calendar;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Nunta-Iulia-Antonii.ics';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    });
 
     // Respectă preferința de mișcare redusă
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
