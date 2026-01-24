@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invitație nuntă – Antonii & Iulia (6 iunie 2026)</title>
+  <meta name="description" content="Invitație la nunta lui Antonii & Iulia — program, locații, RSVP. Elegant, minimalist, mobil-first." />
+
+  <!-- Fonturi: serif pentru titluri + sans-serif pentru corp -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Sari la conținut</a>
+
+  <!-- Ornamente discrete colțuri -->
+  <div class="ornament ornament--tl" aria-hidden="true"></div>
+  <div class="ornament ornament--tr" aria-hidden="true"></div>
+  <div class="ornament ornament--bl" aria-hidden="true"></div>
+  <div class="ornament ornament--br" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Principal">
+      <a class="brand" href="#acasa" aria-label="Acasă">Antonii & Iulia</a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Deschide meniul">☰</button>
+      <ul id="navMenu" class="nav__links">
+        <li><a href="#invitatie">Invitație</a></li>
+        <li><a href="#nasi">Nași</a></li>
+        <li><a href="#parinti">Părinți</a></li>
+        <li><a href="#program">Programul zilei</a></li>
+        <li><a href="#locatii">Locații</a></li>
+        <li><a class="btn btn--pill" href="#rsvp">RSVP</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Erou / Hero -->
+    <section id="acasa" class="hero" aria-label="Invitație nuntă">
+      <div class="container hero__inner">
+        <p class="eyebrow reveal">Vă invităm cu drag la</p>
+        <h1 class="hero__title reveal" style="--delay:100ms">Antonii <span>&amp;</span> Iulia</h1>
+        <p class="date reveal" style="--delay:200ms">6 iunie 2026</p>
+        <div class="countdown reveal" style="--delay:300ms" aria-label="Numărătoare inversă până la nuntă">
+          <div class="countdown__item"><span id="zile">–</span><small>Zile</small></div>
+          <div class="countdown__item"><span id="ore">–</span><small>Ore</small></div>
+          <div class="countdown__item"><span id="minute">–</span><small>Minute</small></div>
+          <div class="countdown__item"><span id="secunde">–</span><small>Secunde</small></div>
+        </div>
+        <div class="hero__cta reveal" style="--delay:420ms">
+          <a href="#invitatie" class="btn btn--primary">Citește invitația</a>
+          <a href="#rsvp" class="btn btn--ghost">Confirmă prezența</a>
+        </div>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+    </section>
+
+    <!-- Invitație -->
+    <section id="invitatie" class="section section--soft container">
+      <div class="reveal">
+        <h2 class="section__title">Invitație</h2>
+        <p>
+          Cu inimile pline de bucurie, alături de familiile noastre și cu binecuvântarea nașilor,
+          <strong> Alexandru și Dumi Cleminte</strong>,
+          vă invităm să ne fiți aproape la celebrarea căsătoriei noastre, în data de
+          <strong>06 iunie 2026</strong>.
+        </p>
+        <p>
+          Vă așteptăm cu drag să ne fiți martori la promisiunea noastră și să sărbătorim împreună până la miezul nopții.
+        </p>
+      </div>
+    </section>
+
+    <!-- Nași -->
+    <section id="nasi" class="section container">
+      <div class="reveal">
+        <h2 class="section__title">Nași</h2>
+        <div class="card nasi">
+          <p class="nasi__names"> Alexandru și Dumi Cleminte</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Părinți -->
+    <section id="parinti" class="section section--soft container">
+      <div class="reveal">
+        <h2 class="section__title">Părinți</h2>
+      </div>
+      <div class="grid grid--2col">
+        <article class="card reveal">
+          <h3>Părinții miresei</h3>
+          <p><strong>Dumitru</strong> și <strong>Nela Onică</strong></p>
+        </article>
+        <article class="card card--inmem reveal" style="--delay:120ms" aria-label="În amintire">
+          <h3>În memoriam</h3>
+          <p class="inmem__line">† În amintirea lui <strong>Mihail</strong> și a <strong>Marinei Gortolomei</strong></p>
+          <p class="inmem__note">Părinții mirelui – pomeniți cu drag și recunoștință.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Programul zilei -->
+    <section id="program" class="section container">
+      <div class="reveal">
+        <h2 class="section__title">Programul zilei</h2>
+      </div>
+      <ol class="timeline">
+        <li class="timeline__item reveal">
+          <time>14:30</time>
+          <div>
+            <h4>Cununia religioasă</h4>
+            <p>Biserica Ortodoxă „Sfântul Gheorghe” și „Sfinții Arhangheli Mihail și Gavril”.</p>
+          </div>
+        </li>
+        <li class="timeline__item reveal" style="--delay:120ms">
+          <time>19:00</time>
+          <div>
+            <h4>Petrecerea</h4>
+            <p>Palatul Elisee, Bârlad — cină, dans și voie bună.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Locații -->
+    <section id="locatii" class="section section--soft container">
+      <div class="reveal">
+        <h2 class="section__title">Locații</h2>
+      </div>
+      <div class="grid grid--2col">
+        <article class="card reveal">
+          <div class="card__head">
+            <h3>Biserica Ortodoxă „Sfântul Gheorghe” & „Sfinții Arhangheli Mihail și Gavril”</h3>
+            <span class="badge">14:30</span>
+          </div>
+          <p class="card__desc">Ceremonia religioasă</p>
+          <a class="btn btn--soft" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ZTxDLim4A2ULnZtv5">Vezi pe Google Maps</a>
+        </article>
+        <article class="card reveal" style="--delay:120ms">
+          <div class="card__head">
+            <h3>Palatul Elisee, Bârlad</h3>
+            <span class="badge">19:00</span>
+          </div>
+          <p class="card__desc">Recepție & petrecere</p>
+          <a class="btn btn--soft" target="_blank" rel="noopener" href="https://maps.app.goo.gl/hwWJBvGrsV6SLSSV7">Vezi pe Google Maps</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="section container">
+      <div class="reveal">
+        <h2 class="section__title">RSVP</h2>
+        <p>Vă rugăm să confirmați prezența completând formularul de mai jos. Răspunsurile sunt <strong>confidențiale</strong> și vizibile numai organizatorilor.</p>
+      </div>
+
+      <!-- Varianta recomandată: buton către Google Form (într-o filă nouă) -->
+      <div class="rsvp-actions reveal">
+        <!-- Înlocuiți URL-ul de mai jos cu linkul formularului vostru Google Forms -->
+        <a class="btn btn--primary" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/FORM_ID/viewform">Completează formularul</a>
+      </div>
+
+      <!-- Opțional: integrare directă prin iframe (decomentați blocul și înlocuiți src) -->
+      <!--
+      <div class="rsvp-iframe reveal" style="--delay:120ms">
+        <iframe title="RSVP – Google Form" src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" width="100%" height="880" frameborder="0" marginheight="0" marginwidth="0">Se încarcă…</iframe>
+      </div>
+      -->
+
+      <p class="hint reveal">Câmpuri necesare în Google Form: <em>Nume</em>, <em>Prenume</em>, <em>Număr de invitați</em>.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Cu drag, <strong>Antonii & Iulia</strong></p>
+      <p class="fine-print">© 2026 · Mulțumim că faceți parte din povestea noastră.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Meniu mobil =====
+    const toggle = document.querySelector('.nav__toggle');
+    const menu = document.getElementById('navMenu');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        menu.classList.toggle('open');
+      });
+    }
+
+    // ===== Scroll lin =====
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id.length > 1 && document.querySelector(id)) {
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ===== Reveal on scroll =====
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{ if (en.isIntersecting) en.target.classList.add('in-view'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // ===== Numărătoare inversă (până la 06.06.2026 14:30) =====
+    const dataNunta = new Date('2026-06-06T14:30:00'); // ora locală
+    const elZ = document.getElementById('zile');
+    const elO = document.getElementById('ore');
+    const elM = document.getElementById('minute');
+    const elS = document.getElementById('secunde');
+
+    function tick() {
+      const acum = new Date();
+      const diff = dataNunta - acum;
+      if (diff <= 0) {
+        elZ.textContent = '0'; elO.textContent = '00'; elM.textContent = '00'; elS.textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      elZ.textContent = d;
+      elO.textContent = String(h).padStart(2,'0');
+      elM.textContent = String(m).padStart(2,'0');
+      elS.textContent = String(s).padStart(2,'0');
+    }
+    tick();
+    const intId = setInterval(tick, 1000);
+
+    // Respectă preferința de mișcare redusă
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      clearInterval(intId);
+      document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));
+    }
+  </script>
+</body>
+</html>
