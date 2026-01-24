@@ -21,7 +21,7 @@
   <div class="ornament ornament--bl" aria-hidden="true"></div>
   <div class="ornament ornament--br" aria-hidden="true"></div>
 
-  <header class="site-header">
+  <header class="site-header fade-loop">
     <nav class="nav container" aria-label="Principal">
       <a class="brand" href="#acasa" aria-label="Acasă">
         <!-- Logo SVG: monogramă stilizată + nume -->
@@ -65,7 +65,6 @@
         <p class="eyebrow reveal">Vă invităm cu drag</p>
         <div class="title-wrap">
           <h1 class="hero__title reveal title-glint" style="--delay:120ms">Iulia <span>&amp;</span> Antonii</h1>
-          <!-- Particule confetti minimaliste generate prin CSS -->
           <div class="confetti" aria-hidden="true"></div>
         </div>
         <p class="date reveal" style="--delay:260ms">6 iunie 2026</p>
@@ -115,7 +114,7 @@
       <div class="reveal">
         <h2 class="section__title">Nași</h2>
         <div class="card nasi hover-tilt">
-          <p class="nasi__names">Cleminte Dumi și Alexandru</p>
+          <p class="nasi__names">Dumi și Alexandru Cleminte</p>
         </div>
       </div>
     </section>
@@ -154,7 +153,7 @@
           <time>19:00</time>
           <div>
             <h4>Petrecerea</h4>
-            <p>Palatul Elisee, Bârlad — cină, dans și voie bună.</p>
+            <p>Palatul Elisee, Sala Bourbon, Bârlad — cină, dans și voie bună.</p>
           </div>
         </li>
       </ol>
@@ -209,57 +208,43 @@
       <p class="hint reveal">Câmpuri necesare în Google Form: <em>Nume</em>, <em>Prenume</em>, <em>Număr de invitați</em>.</p>
     </section>
 
-    <!-- ===== Noi secțiuni: Atracții & Cazări ===== -->
+    <!-- ===== Informații utile: listă actualizată ===== -->
     <section id="informatii" class="section section--soft container">
       <div class="reveal">
         <h2 class="section__title">Informații utile pentru oaspeți</h2>
       </div>
       <div class="grid grid--2col">
-        <!-- Categoria 1: Atracții -->
+        <!-- Categoria 1: Atracții (listă scurtă) -->
         <article class="card reveal">
-          <h3>Atracții turistice din Bârlad, județul Vaslui</h3>
-          <h4>🏛️ Obiective culturale și istorice</h4>
-          <ul>
-            <li><strong>Muzeul „Vasile Pârvan”</strong> – unul dintre cele mai importante muzee din Moldova, cu secții de istorie, arheologie, etnografie, științele naturii și artă [primariabarlad.ro], [tripadvisor.com]</li>
-            <li><strong>Pavilionul Expozițional „Marcel Guguianu”</strong> – muzeu de artă modernă, dedicat sculptorului Marcel Guguianu; include și planetariu [primariabarlad.ro], [tripadvisor.com]</li>
-            <li><strong>Teatrul „Victor Ion Popa”</strong> – instituție culturală reprezentativă pentru oraș, cu spectacole de teatru și evenimente artistice [primariabarlad.ro]</li>
-            <li><strong>Biserica Domnească „Sf. Gheorghe”</strong> – ctitorie din secolul al XVII‑lea, asociată domnitorului Vasile Lupu [Obiective...tul Vaslui]</li>
-          </ul>
-          <h4>🌳 Natură și relaxare</h4>
-          <ul>
-            <li><strong>Grădina Publică Bârlad</strong> – parc central, ideal pentru plimbări și relaxare [primariabarlad.ro]</li>
-            <li><strong>Grădina Zoologică Bârlad</strong> – una dintre cele mai vechi grădini zoologice din România, potrivită pentru familii cu copii [primariabarlad.ro], [tripadvisor.com]</li>
-            <li><strong>Parcul „Mihai Eminescu”</strong> – spațiu verde urban, aproape de centru [primariabarlad.ro]</li>
-          </ul>
-          <h4>🔭 Educație și divertisment</h4>
-          <ul>
-            <li><strong>Observatorul Astronomic și Planetariul Bârlad</strong> – parte a complexului muzeal, foarte apreciat de tineri și pasionați de astronomie [primariabarlad.ro]</li>
-            <li><strong>Centrul Național de Informare și Promovare Turistică Bârlad</strong> – punct util pentru turiști, cu materiale și informații locale [primariabarlad.ro], [turismbarlad.ro]</li>
+          <h3>Atracții în Bârlad</h3>
+          <ul class="bullets">
+            <li><strong>Muzeul „Vasile Pârvan”</strong> – principalul obiectiv cultural al orașului</li>
+            <li><strong>Pavilionul Expozițional „Marcel Guguianu” & Planetariul</strong> – artă și astronomie</li>
+            <li><strong>Teatrul „Victor Ion Popa”</strong> – simbol cultural local</li>
+            <li><strong>Grădina Zoologică Bârlad</strong> – atracție pentru familii</li>
+            <li><strong>Grădina Publică Bârlad</strong> – parc central, relaxare</li>
           </ul>
         </article>
 
-        <!-- Categoria 2: Cazări -->
+        <!-- Categoria 2: Cazări (listă scurtă) -->
         <article class="card reveal" style="--delay:120ms">
-          <h3>Cazări în Bârlad, județul Vaslui</h3>
-          <h4>🏨 Hoteluri</h4>
-          <ul>
-            <li><strong>Hotel Moldova Bârlad (★★★)</strong> – situat central, hotel cunoscut, renovat, cu restaurant și bar [roturistic.ro], [tripadvisor.com]</li>
-            <li><strong>Hotel Premier Bârlad (★★★)</strong> – apreciat pentru confort, curățenie și poziționare centrală [tripadvisor.com]</li>
-            <li><strong>N&S Hotel Bârlad (★★★)</strong> – potrivit pentru călătorii de afaceri, parcare proprie [portalturism.ro], [roturistic.ro]</li>
-            <li><strong>Hotel Ro & Mario</strong> – opțiune economică, situată în oraș [tripadvisor.com]</li>
-          </ul>
-          <h4>🏡 Pensiuni și alte tipuri de cazare</h4>
-          <ul>
-            <li><strong>Pensiunea Mira (★★★★)</strong> – pensiune modernă, restaurant, piscină sezonieră, situată pe E581 [pensiunea-mira.ro]</li>
-            <li><strong>Pensiunea Gallamar</strong> – foarte bine cotată, acceptă animale de companie [booking.com], [tripadvisor.com]</li>
-            <li><strong>Pensiunea Fabian</strong> – situată la intrarea în oraș, potrivită pentru tranzit [tripadvisor.com]</li>
-            <li><strong>Cazare Bârlad (apartamente / camere)</strong> – mai multe locații tip apartament (Cazare Bârlad 3, 4, 5; Cozy Studios etc.) disponibile pe platforme online [booking.com]</li>
+          <h3>Cazări în Bârlad</h3>
+          <ul class="bullets">
+            <li><strong>Hotel Premier</strong> – cea mai bună opțiune hotelieră din oraș</li>
+            <li><strong>Hotel Moldova</strong> – central, clasic</li>
+            <li><strong>Pensiunea Mira</strong> – confort ridicat, restaurant, piscină</li>
+            <li><strong>Pensiunea Gallamar</strong> – foarte bine cotată</li>
           </ul>
         </article>
       </div>
     </section>
 
   </main>
+
+  <!-- Săgeată back-to-top, fixă în colțul dreapta-jos -->
+  <button id="toTop" class="toTop" aria-label="Înapoi sus" title="Înapoi sus">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/></svg>
+  </button>
 
   <footer class="footer">
     <div class="container">
@@ -289,6 +274,12 @@
           document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
         }
       });
+    });
+
+    // ===== Buton back-to-top =====
+    const toTop = document.getElementById('toTop');
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // ===== Reveal on scroll =====

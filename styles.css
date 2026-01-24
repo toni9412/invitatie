@@ -32,6 +32,10 @@ img{max-width:100%;display:block;border-radius:12px}
 
 /* Antet & navigație */
 .site-header{position:sticky;top:0;z-index:40;background:rgba(255,251,248,.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,.06)}
+/* Joc animat foarte subtil pe header: fade ușor în buclă */
+.fade-loop{animation: headerfade 14s ease-in-out infinite;}
+@keyframes headerfade{ 0%, 95%, 100%{ opacity:1 } 48%{ opacity:.94 } 52%{ opacity:1 } }
+
 .nav{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem 0}
 .brand{text-decoration:none;display:flex;align-items:center;gap:.6rem;color:var(--ink)}
 .logo{height:40px; width:auto; display:block; filter: drop-shadow(0 2px 8px rgba(0,0,0,.06));}
@@ -58,8 +62,8 @@ img{max-width:100%;display:block;border-radius:12px}
 .hero__title{font-family:'Playfair Display', serif;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.1;margin:.2rem 0 .6rem;color:var(--ink);position:relative}
 .hero__title span{color:var(--gold-ink)}
 
-/* Glint fin pe titlu: o sclipire foarte discretă care traversează textul */
-.title-glint{background: none; position: relative}
+/* Glint fin pe titlu */
+.title-glint{position: relative}
 .title-glint::after{
   content:""; position:absolute; inset:0; pointer-events:none;
   background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(203,174,122,.18) 50%, rgba(255,255,255,0) 100%);
@@ -68,12 +72,11 @@ img{max-width:100%;display:block;border-radius:12px}
 }
 @keyframes glint{ 0%{ background-position:-220% 0 } 100%{ background-position:220% 0 } }
 
-/* Particule confetti minimaliste (CSS-only): */
+/* Confetti minimalist foarte discret */
 .title-wrap{position:relative;display:inline-block}
 .confetti{position:absolute;inset:-8px -12px;pointer-events:none;overflow:hidden}
-/* folosim 12 particule create prin multiple background-uri */
 .confetti::before, .confetti::after{
-  content:""; position:absolute; inset:0; background-repeat:no-repeat; opacity:.38; filter: blur(.15px);
+  content:""; position:absolute; inset:0; background-repeat:no-repeat; opacity:.34; filter: blur(.15px);
   animation: fall 10s linear infinite;
 }
 .confetti::before{
@@ -142,6 +145,10 @@ img{max-width:100%;display:block;border-radius:12px}
 .badge{display:inline-flex;align-items:center;justify-content:center;background:var(--ivory);border:1px solid var(--line);color:var(--gold-ink);border-radius:8px;padding:.2rem .5rem;font-weight:600}
 .card__desc{color:#4f4f4f}
 
+/* Listă bullets compacte în informații */
+.bullets{margin:0; padding-left:1.1rem}
+.bullets li{margin:.35rem 0}
+
 /* Nași */
 .nasi{display:flex;align-items:center;justify-content:center}
 .nasi__names{font-family:'Playfair Display', serif;font-size:1.2rem;margin:0;color:var(--ink)}
@@ -186,6 +193,12 @@ img{max-width:100%;display:block;border-radius:12px}
 .btn--ghost:hover{background:rgba(0,0,0,.04)}
 .btn--soft{background:#fff;border:1px solid var(--line);color:var(--ink)}
 .btn--pill{background:#F4EADF}
+
+/* Buton Back-to-top */
+.toTop{position:fixed;right:18px;bottom:18px; width:44px;height:44px;border-radius:999px;border:1px solid var(--line);
+  background:#fff;color:var(--gold-ink); display:grid;place-items:center; box-shadow: var(--shadow); cursor:pointer; z-index:50}
+.toTop:hover{background:#F4EADF}
+.toTop svg{width:22px;height:22px}
 
 /* Hover tilt & glow */
 .hover-tilt{transition: transform .25s ease, box-shadow .25s ease}
