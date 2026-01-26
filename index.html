@@ -79,10 +79,10 @@
           <a href="#raspuns" class="btn btn--confirm">Confirmă prezența</a>
           <!-- Adaugă în calendar (varianta unică) -->
           <div class="addcal">
-            <button class="btn btn--calendar btn--same" id="btnCal">Adaugă în calendar</button>
-            
-              <button class="addcal__item" id="dlICS">Descarcă fișier ICS</button>
-              <a class="addcal__item" id="gcalAll" target="_blank" rel="noopener">Google Calendar – Nunta Iulia & Antonii</a>
+            <button class="btn btn--calendar btn--same" id="btnCal">Adaugă în calendar ▾</button>
+            <div class="addcal__menu" id="calMenu" hidden>
+         
+              <a class="addcal__item" id="gcalAll" target="_blank" rel="noopener">Calendar – Nunta Iulia & Antonii</a>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@
     <!-- Invitație -->
     <section id="invitatie" class="section section--soft container">
       <div class="reveal prose prose--center">
-        <h2 class="section__title">Invitație</h2>
+        <h2 class="section__title"></h2>
         <p>
           Cu inimile pline de recunoștință și emoție, împărtășim cu voi bucuria de a porni împreună
           într‑o nouă călătorie. Cu binecuvântarea nașilor, <strong>Dumi și Alexandru</strong>,
@@ -114,7 +114,7 @@
       <div class="reveal">
         <h2 class="section__title">Nași</h2>
         <div class="card nasi hover-tilt">
-          <p class="nasi__names">Dumi și Alexandru <strong>Cleminte</strong></p>
+          <p class="nasi__names">Dumi și Alexandru Cleminte</p>
         </div>
       </div>
     </section>
@@ -153,7 +153,7 @@
           <time>19:00</time>
           <div>
             <h4>Petrecerea</h4>
-            <p>Palatul Elisee, Bârlad — cină, dans și voie bună. Sala <strong>Bourbon</strong>.</p>
+            <p>Palatul Elisee, Sala Bourbon, Bârlad — cină, dans și voie bună.</p>
           </div>
         </li>
       </ol>
@@ -178,7 +178,7 @@
             <h3>Palatul Elisee, Bârlad</h3>
             <span class="badge glow">19:00</span>
           </div>
-          <p class="card__desc">Recepție & petrecere — sala <strong>Bourbon</strong>. Palatul Elisee, Bârlad — cină, dans și voie bună.</p>
+          <p class="card__desc">Recepție & petrecere</p>
           <a class="btn btn--soft" target="_blank" rel="noopener" href="https://maps.app.goo.gl/hwWJBvGrsV6SLSSV7">Vezi pe Google Maps</a>
         </article>
       </div>
@@ -315,37 +315,91 @@
     tick();
     const intId = setInterval(tick, 1000);
 
-    // ===== Add to Calendar (download direct ICS) =====
-function buildICS(){
-  const startUTC = new Date(Date.UTC(2026,5,6,11,30));
-  const endUTC   = new Date(Date.UTC(2026,5,6,20,59));
-  const stamp = new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
-  const fmt = (d)=> d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
-  const desc = [
-    'Program:',
-    '- Cununia religioasa: 14:30 — Biserica Ortodoxa "Sfantul Gheorghe" si "Sfintii Arhangheli Mihail si Gavril"',
-    '- Petrecerea: 19:00 — Palatul Elisee, Barlad (sala Bourbon)'
-  ].join('\n');
-  return [
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Iulia & Antonii//Invitatie Nunta//RO',
-    'BEGIN:VEVENT',
-    'UID:all-'+stamp+'@iulia-antonii','DTSTAMP:'+stamp,
-    'DTSTART:'+fmt(startUTC),'DTEND:'+fmt(endUTC),
-    'SUMMARY:Nunta – Iulia & Antonii','DESCRIPTION:'+desc,
-    'END:VEVENT','END:VCALENDAR'
-  ].join('
-');
-}
-const btnCal = document.getElementById('btnCal');
-btnCal.addEventListener('click', ()=>{
-  const blob = new Blob([buildICS()], {type:'text/calendar;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'Nunta-Iulia-Antonii.ics';
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
-});
-// Respectă preferința de mișcare redusă
+    // ===== Add to Calendar (un singur eveniment) =====
+    const CER_LOC = 'Biserica Ortodoxă „Sfântul Gheorghe” & „Sfinții Arhangheli Mihail și Gavril”';
+    const CER_MAP = 'https://maps.app.goo.gl/ZTxDLim4A2ULnZtv5';
+    const PET_LOC = 'Palatul Elisee, Bârlad';
+    const PET_MAP = 'https://maps.app.goo.gl/hwWJBvGrsV6SLSSV7';
+
+    function toGCalLink(title, start, end, details){
+      const fmt = (d)=>{
+        const z = new Date(d);
+        return z.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
+      };
+      const params = new URLSearchParams({
+        action:'TEMPLATE',
+        text: title,
+        dates: `${fmt(start)}/${fmt(end)}`,
+        details
+      });
+      return `https://calendar.google.com/calendar/render?${params.toString()}`;
+    }
+
+    function buildICS(){
+      // Eveniment unic: 14:30–23:59 (ora locală -> UTC în ICS)
+      const startUTC = new Date(Date.UTC(2026,5,6,11,30)); // 14:30 EEST ≈ 11:30Z
+      const endUTC   = new Date(Date.UTC(2026,5,6,20,59)); // 23:59 EEST ≈ 20:59Z
+
+      const stamp = new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
+      const fmt = (d)=> d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/, 'Z');
+      const siteUrl = location.href;
+
+      const desc = [
+        'Program:',
+        `- Cununia religioasă: 14:30 — ${CER_LOC} (${CER_MAP})`,
+        `- Petrecerea: 19:00 — ${PET_LOC} (${PET_MAP})`,
+        `Detalii: ${siteUrl}`
+      ].join('\\n');
+
+      const event = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Iulia & Antonii//Invitație Nuntă//RO',
+        'BEGIN:VEVENT',
+        `UID:all-${stamp}@iulia-antonii`,
+        `DTSTAMP:${stamp}`,
+        `DTSTART:${fmt(startUTC)}`,
+        `DTEND:${fmt(endUTC)}`,
+        'SUMMARY:Nunta – Iulia & Antonii',
+        `DESCRIPTION:${desc}`,
+        'END:VEVENT',
+        'END:VCALENDAR' ].join('\n');
+
+      return event;
+    }
+
+    // Meniu calendar
+    const btnCal = document.getElementById('btnCal');
+    const calMenu = document.getElementById('calMenu');
+    const dl = document.getElementById('dlICS');
+    const gcalAll = document.getElementById('gcalAll');
+
+    btnCal.addEventListener('click', ()=>{
+      const open = !calMenu.hasAttribute('hidden');
+      if(open){ calMenu.setAttribute('hidden', ''); }
+      else { calMenu.removeAttribute('hidden'); }
+    });
+    document.addEventListener('click',(e)=>{
+      if(!calMenu.contains(e.target) && e.target!==btnCal){ calMenu.setAttribute('hidden',''); }
+    });
+
+    // Configurează linkul Google Calendar
+    const gStart = new Date('2026-06-06T14:30:00');
+    const gEnd   = new Date('2026-06-06T23:59:00');
+    const details = `Program%3A%0A- Cununia religioas3%3A 14%3A30  ${CER_LOC} (${CER_MAP})%0A- Petrecerea%3A 19%3A00  ${PET_LOC} (${PET_MAP})`;
+    gcalAll.href = toGCalLink('Nunta – Iulia & Antonii', gStart, gEnd, decodeURIComponent(details));
+
+    // Descărcare ICS
+    dl.addEventListener('click', ()=>{
+      const blob = new Blob([buildICS()], {type:'text/calendar;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Nunta-Iulia-Antonii.ics';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    });
+
+    // Respectă preferința de mișcare redusă
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       clearInterval(intId);
       document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));
