@@ -127,7 +127,7 @@
       <div class="grid grid--2col">
         <article class="card card--softshadow reveal hover-tilt">
           <h3>Părinții miresei</h3>
-          <p><strong>Nela</strong> și <strong>Dumitru Onică</strong></p>
+          <p>Dumitru și Nela <strong>Onică</strong></p>
         </article>
         <article class="card card--inmem card--softshadow reveal hover-tilt" style="--delay:120ms">
           <p class="inmem__line">† În amintirea <strong>Marinei</strong> și a lui <strong>Mihail Gortolomei</strong></p>
@@ -175,7 +175,7 @@
         </article>
         <article class="card reveal hover-tilt" style="--delay:120ms">
           <div class="card__head">
-            <h3>Palatul Elisee, Bârlad</h3>
+            <h3>Palatul Elisee, Bârlad, <strong>Sala Bourbon</strong></h3>
             <span class="badge glow">19:00</span>
           </div>
           <p class="card__desc">Recepție & petrecere</p>
@@ -188,14 +188,14 @@
     <section id="raspuns" class="section container">
       <div class="reveal">
         <h2 class="section__title">Răspuns</h2>
-        <p>Vă rugăm să confirmați prezența completând formularul. Răspunsurile sunt <strong>confidențiale</strong> și vizibile numai organizatorilor.</p>
+        <p>Vă rugăm să confirmați prezența completând formularul. Răspunsurile sunt <strong>confidențiale</strong> și vizibile numai organizatorilor. (Vă rugăm să confirmați până la data de <strong>17 mai 2026</strong>)</p>
       </div>
 
       <div class="grid grid--2col">
         <div class="card reveal">
           <h3>Confirmare prin formular</h3>
           <p>Completați formularul online pentru a ne transmite numele și numărul de invitați.</p>
-          <a class="btn btn--primary" target="_blank" rel="noopener" href="https://docs.google.com/forms/d/FORM_ID/viewform">Completează formularul</a>
+          <a class="btn btn--primary" target="_blank" rel="noopener" href="https://forms.gle/JApqvpR5pBAJxTFM6">Completează formularul</a>
         </div>
         <div class="card reveal" style="--delay:120ms">
           <h3>Contact miri</h3>
@@ -230,7 +230,6 @@
         <article class="card reveal" style="--delay:120ms">
           <h3>Cazări în Bârlad</h3>
           <ul class="bullets">
-            <li><strong>Hotel Premier</strong> – cea mai bună opțiune hotelieră din oraș</li>
             <li><strong>Hotel Moldova</strong> – central, clasic</li>
             <li><strong>Pensiunea Mira</strong> – confort ridicat, restaurant, piscină</li>
             <li><strong>Pensiunea Gallamar</strong> – foarte bine cotată</li>
@@ -404,6 +403,31 @@
       clearInterval(intId);
       document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));
     }
-  </script>
+  
+// Animated hamburger
+const navToggle=document.querySelector('.nav__toggle');
+if(navToggle){
+ navToggle.addEventListener('click',()=>{
+  navToggle.classList.toggle('open');
+ });
+}
+
+
+// Confetti revert
+function launchConfetti(){
+ for(let i=0;i<40;i++){
+  const p=document.createElement('div');
+  p.className='confetti-piece';
+  p.style.left=(50+Math.random()*20-10)+'%';
+  p.style.top='50%';
+  p.style.backgroundColor=['#ffcc00','#ff6699','#66ccff','#99ff66','#ff9966'][Math.floor(Math.random()*5)];
+  p.style.animationDuration=(0.8+Math.random())+'s';
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),1500);
+ }
+}
+const btnConf=document.querySelector('.btn--confirm');if(btnConf){btnConf.addEventListener('click',launchConfetti);} 
+
+</script>
 </body>
 </html>
