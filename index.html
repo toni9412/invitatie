@@ -22,10 +22,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
-<link href='https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap' rel='stylesheet'>
 </head>
 <body>
-  <div class="bg-decor" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Sari la conținut</a>
 
   <!-- Ornamente discrete colțuri -->
@@ -59,7 +57,15 @@
         </svg>
         <span class="sr-only">Iulia & Antonii</span>
       </a>
-      
+      <button class="nav__toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Deschide meniul">☰</button>
+      <ul id="navMenu" class="nav__links">
+        <li><a href="#invitatie">Invitație</a></li>
+        <li><a href="#nasi">Nași</a></li>
+        <li><a href="#parinti">Părinți</a></li>
+        <li><a href="#program">Programul zilei</a></li>
+        <li><a href="#locatii">Locații</a></li>
+        <li><a class="btn btn--pill" href="#raspuns">Răspuns</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -433,28 +439,6 @@ function launchConfetti(){
 }
 const btnConf=document.querySelector('.btn--confirm');if(btnConf){btnConf.addEventListener('click',launchConfetti);} 
 
-</script>
-
-
-
-
-<script>
-(function(){
- const root=document.querySelector('.bg-decor'); if(!root) return;
- const EMOJI=['🌸','🍃','💮','🌺','🌼','🌷','💐'];
- const pick=a=>a[Math.floor(Math.random()*a.length)];
- root.innerHTML='';
- const speeds=[0.03,0.06,0.09,0.14];
- const layers=speeds.map(sp=>{const l=document.createElement('div'); l.className='bg-layer'; l.dataset.parallax=sp; root.appendChild(l); return l;});
- const TOTAL=60;
- for(let i=0;i<TOTAL;i++){
-   const e=document.createElement('span'); e.className='emoji'; e.textContent=pick(EMOJI);
-   e.style.left=Math.random()*100+'%'; e.style.top=Math.random()*100+'%';
-   layers[Math.floor(Math.random()*layers.length)].appendChild(e);
- }
- let ticking=false; function onScroll(){ if(ticking) return; ticking=true; requestAnimationFrame(()=>{ const y=scrollY; layers.forEach(l=>{ const sp=parseFloat(l.dataset.parallax)||0.02; l.style.transform=`translate3d(0, ${-(y*sp)}px, 0)`; }); ticking=false; }); }
- addEventListener('scroll', onScroll, {passive:true}); onScroll();
-})();
 </script>
 </body>
 </html>
