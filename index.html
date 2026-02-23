@@ -22,6 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+<link href='https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap' rel='stylesheet'>
 </head>
 <body>
   <div class="bg-decor" aria-hidden="true"></div>
@@ -454,6 +455,19 @@ const btnConf=document.querySelector('.btn--confirm');if(btnConf){btnConf.addEve
  let ticking=false; function onScroll(){ if(ticking) return; ticking=true; requestAnimationFrame(()=>{ const y=scrollY; layers.forEach(l=>{ const sp=parseFloat(l.dataset.parallax)||0.02; l.style.transform=`translate3d(0, ${-(y*sp)}px, 0)`; }); ticking=false; }); }
  addEventListener('scroll', onScroll, {passive:true}); onScroll();
 })();
+</script>
+<script>
+// === iOS Safari Parallax Shift Fix ===
+let lastVH = window.innerHeight;
+window.addEventListener('resize', () => {
+  const newVH = window.innerHeight;
+  if (Math.abs(newVH - lastVH) < 120) {
+    document.body.classList.add('freeze-parallax');
+  } else {
+    document.body.classList.remove('freeze-parallax');
+  }
+  lastVH = newVH;
+});
 </script>
 </body>
 </html>
