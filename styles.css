@@ -273,15 +273,8 @@ img{max-width:100%;display:block;border-radius:12px}
 
 /* === MOBILE NAV ALWAYS ON TOP === */
 
-/* === INVITATION FONT WITH FULL DIACRITIC SUPPORT === */
-#invitatie, #invitatie p, #invitatie h2{
-    font-family: 'Alex Brush', cursive !important;
-    color: #5B442A !important;
-}
-#invitatie h2{ font-size: 62px !important; }
-#invitatie p { font-size: 34px !important; line-height: 1.38 !important; }
-@media(min-width:821px){
-  #invitatie h2{ font-size: 70px !important; }
-  #invitatie p { font-size: 36px !important; }
-}
 
+#invitatie, #invitatie p, #invitatie h2{font-family:'Lora',serif!important;color:#5B442A!important;}
+#invitatie h2{font-size:60px!important;}
+#invitatie p{font-size:32px!important;line-height:1.38!important;}
+@media(min-width:821px){#invitatie h2{font-size:66px!important;}#invitatie p{font-size:34px!important;}}
