@@ -238,7 +238,6 @@ img{max-width:100%;display:block;border-radius:12px}
   z-index: 100;                 /* peste toate decorurile */
 }
 
-
 /* === Ajustare suplimentară CTA Hero (+20px) === */
 .hero__cta {
   margin-top: 50px; /* 30px anterior + 20px suplimentar */
