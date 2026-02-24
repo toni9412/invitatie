@@ -22,9 +22,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+<link href='https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap' rel='stylesheet'>
 </head>
 <body>
-<div id="viewport-stable">
   <div class="bg-decor" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Sari la conținut</a>
 
@@ -59,7 +59,6 @@
         </svg>
         <span class="sr-only">Iulia & Antonii</span>
       </a>
-      
       
     </nav>
   </header>
@@ -284,7 +283,7 @@
     // ===== Buton back-to-top =====
     const toTop = document.getElementById('toTop');
     toTop.addEventListener('click', () => {
-      document.getElementById('viewport-stable').scrollTo({top:0,behavior:'smooth'});
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // ===== Reveal on scroll =====
@@ -457,11 +456,18 @@ const btnConf=document.querySelector('.btn--confirm');if(btnConf){btnConf.addEve
  addEventListener('scroll', onScroll, {passive:true}); onScroll();
 })();
 </script>
-</div>
-
 <script>
-function fixMobileVH(){let vh=window.innerHeight*0.01;document.documentElement.style.setProperty('--vh',`${vh}px`);}fixMobileVH();window.addEventListener('resize',fixMobileVH);
-if(window.matchMedia('(max-width:820px)').matches){document.body.classList.add('mobile-device');}
+// === iOS Safari Parallax Shift Fix ===
+let lastVH = window.innerHeight;
+window.addEventListener('resize', () => {
+  const newVH = window.innerHeight;
+  if (Math.abs(newVH - lastVH) < 120) {
+    document.body.classList.add('freeze-parallax');
+  } else {
+    document.body.classList.remove('freeze-parallax');
+  }
+  lastVH = newVH;
+});
 </script>
 </body>
 </html>
