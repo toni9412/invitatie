@@ -388,8 +388,10 @@
       const gEnd   = new Date('2026-06-06T23:59:00');
       const detailsText =
         `Program:\n` +
-        `- Cununia civilă și religioasă: 14:30 — ${CER_LOC} (${CER_MAP})\n` +
-        `- Petrecerea: 19:00 — ${PET_LOC} (${PET_MAP})`;
+        `- Cununia civilă: 14:00 — ${CER_LOC} (${CER_MAP})`,
+		`- Cununia religioasă: 15:00`,
+        `- Petrecerea: 19:00 — ${PET_LOC} (${PET_MAP})``;
+		
       gcalAll.href = toGCalLink('Nunta – Iulia & Antonii', gStart, gEnd, detailsText);
     }
 
