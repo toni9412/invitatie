@@ -628,16 +628,26 @@ img{max-width:100%;display:block;border-radius:12px}
 
 /* Background */
 .bg-decor{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100lvh; /* keeps the same visual size when mobile browser bars show/hide */
+  z-index: 0;
+  pointer-events: none;
+  
   background-image:
     linear-gradient(rgba(255,255,255,.62), rgba(255,255,255,.62)),
     url("Fundal.png");
   background-size:cover,cover;
   background-position:center,center;
   background-repeat:no-repeat,no-repeat;
+}
+
+@supports not (height: 100lvh) {
+  .bg-decor{
+    height: 100vh;
+  }
 }
 
 .bg-decor::before{
@@ -743,7 +753,7 @@ main,
   #invitatie p{font-size:20px !important}
 }
 
-.freeze-parallax .bg-layer{transform:none !important}
+.freeze-parallax .bg-decor{transform:none !important}
 
 /* Intro envelope */
 .intro-envelope{
