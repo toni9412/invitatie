@@ -1006,3 +1006,8 @@ body.intro-active .skip-link{
   position: relative;
   z-index: 1;
 }
+
+#raspuns .card .inmem__sub{
+  margin-top: -0.35rem;
+  margin-bottom: 1rem;
+}
