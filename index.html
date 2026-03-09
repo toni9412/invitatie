@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  
+  <link rel="preload" as="image" href="Plic_Negru.webp">
+  
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <title>Invitație nuntă – Iulia & Antonii (6 iunie 2026)</title>
@@ -34,7 +36,7 @@
   <div id="introEnvelope" class="intro-envelope" aria-label="Deschide invitația" role="dialog" aria-modal="true">
     <div class="intro-envelope__wrap">
 		<div class="envelope envelope--image">
-			<img class="envelope__photo" src="Plic_Negru.png" alt="Plic" />
+			<img class="envelope__photo" src="Plic_Negru.webp" alt="Plic" fetchpriority="high" decoding="async" />
 		  
 			<img class="flower flower--top-right" src="floare1.png" alt="" />
 			<img class="flower flower--bottom-left" src="floare2.png" alt="" />
@@ -314,7 +316,7 @@
     tick();
     const intId = setInterval(tick, 1000);
 
-    const CER_LOC = 'Biserica Ortodoxă „Sfinții Apostoli Petru și Pavel”, satul Ivești';
+    const CER_LOC = 'Biserica Ortodoxă „Sfinții Apostoli Petru și Pavel”, Ivești';
     const CER_MAP = 'https://maps.app.goo.gl/sMFWC4Unrv9LnxTC9';
     const PET_LOC = 'Palatul Elisee, sala BOURBON, Bârlad';
     const PET_MAP = 'https://maps.app.goo.gl/BTxBwgCRP4x8PHRW6';
@@ -344,7 +346,7 @@
       const desc = [
         'Program:',
         `- Cununia civilă: 14:00 — ${CER_LOC} (${CER_MAP})`,
-        `- Cununia religioasă: 15:00`,
+        `- Cununia religioasă: 15:00 — ${CER_LOC}`,
         `- Petrecerea: 19:00 — ${PET_LOC} (${PET_MAP})`
       ].join('\\n');
 
@@ -384,12 +386,12 @@
     }
 
     if(gcalAll){
-      const gStart = new Date('2026-06-06T14:30:00');
-      const gEnd   = new Date('2026-06-06T23:59:00');
+      const gStart = new Date('2026-06-06T14:00:00');
+      const gEnd   = new Date('2026-06-07T04:00:00');
       const detailsText =
         `Program:\n` +
         `- Cununia civilă: 14:00 — ${CER_LOC} (${CER_MAP})\n` +
-		`- Cununia religioasă: 15:00\n` +
+		`- Cununia religioasă: 15:00 — ${CER_LOC}\n`  +
         `- Petrecerea: 19:00 — ${PET_LOC} (${PET_MAP})`;		
 		
       gcalAll.href = toGCalLink('Nunta – Iulia & Antonii', gStart, gEnd, detailsText);
