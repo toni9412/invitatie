@@ -199,14 +199,12 @@
       <section id="raspuns" class="section container">
         <div class="reveal">
           <h2 class="section__title">Răspuns</h2>
-          <p>Vă rugăm să confirmați prezența completând formularul. Răspunsurile sunt <strong>confidențiale</strong> și vizibile numai organizatorilor. (Vă rugăm să confirmați până la data de <strong>17 mai 2026</strong>)</p>
+          <p>Pentru a ne confirma prezența, vă rugăm să completați formularul. Răspunsurile dumneavoastră rămân confidențiale și sunt vizibile doar organizatorilor. Confirmarea poate fi transmisă până la data de <strong>17 mai 2026</strong>.</p>
         </div>
 
         <div class="grid grid--2col">
           <div class="card reveal">
             <h3>Confirmare prin formular</h3>
-            <p>Completați formularul online pentru a ne transmite numele și numărul de invitați.</p>
-			<p class="inmem__sub">*nu este necesar să introduceți emailul</p>
             <a class="btn btn--primary" target="_blank" rel="noopener" href="https://forms.gle/JApqvpR5pBAJxTFM6">Completează formularul</a>
           </div>
           <div class="card reveal" style="--delay:120ms">
@@ -444,39 +442,40 @@
 
   <script>
     (function(){
-      const intro = document.getElementById('introEnvelope');
-      const sealBtn = document.getElementById('sealBtn');
-      if(!intro || !sealBtn) return;
+	  const intro = document.getElementById('introEnvelope');
+	  const sealBtn = document.getElementById('sealBtn');
+	  const envelope = intro?.querySelector('.envelope');
+	  if(!intro || !sealBtn || !envelope) return;
 
-      document.body.classList.add('intro-lock');
+	  document.body.classList.add('intro-lock');
 
-      let opened = false;
+	  let opened = false;
 
-      function openIntro(){
-        if(opened) return;
-        opened = true;
+	  function openIntro(){
+		if(opened) return;
+		opened = true;
 
-        intro.classList.add('is-opening');
-        intro.classList.add('is-direct-open');
-        document.body.classList.remove('intro-lock');
+		intro.classList.add('is-opening');
+		intro.classList.add('is-direct-open');
+		document.body.classList.remove('intro-lock');
 
-        initSite();
+		initSite();
 
-        setTimeout(()=>{
-          intro.classList.add('is-done');
-          setTimeout(()=> intro.remove(), 900);
-        }, 120);
-      }
+		setTimeout(()=>{
+		  intro.classList.add('is-done');
+		  setTimeout(()=> intro.remove(), 900);
+		}, 120);
+	  }
 
-      sealBtn.addEventListener('click', openIntro);
+	  envelope.addEventListener('click', openIntro);
 
-      sealBtn.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openIntro();
-        }
-      });
-    })();
+	  sealBtn.addEventListener('keydown', (e)=>{
+		if(e.key === 'Enter' || e.key === ' ') {
+		  e.preventDefault();
+		  openIntro();
+		}
+	  });
+	})();
   </script>
   
 <script>
