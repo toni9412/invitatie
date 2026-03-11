@@ -632,11 +632,10 @@ img{max-width:100%;display:block;border-radius:12px}
   top: 0;
   left: 0;
   width: 100%;
-  /* Folosim --vh setat o singură dată la load, ca să nu se redimensioneze la scroll */
-  height: calc(var(--vh, 1vh) * 100);
-  /* 100lvh = viewport-ul cel mai mare (cu bara ascunsă), deci fundalul acoperă tot mereu */
-  min-height: 100vh;
-  min-height: 100lvh;
+  /* Înălțimea e setată O SINGURĂ DATĂ din JS ca pixeli ficși (--bg-h).
+     Nu folosim NICIO unitate viewport (vh/lvh/dvh/svh) pentru că
+     browserul le recalculează la show/hide toolbar → background-size:cover sare. */
+  height: var(--bg-h, 100vh);
   z-index: 0;
   pointer-events: none;
   
@@ -646,8 +645,9 @@ img{max-width:100%;display:block;border-radius:12px}
   background-size:cover,cover;
   background-position:center,center;
   background-repeat:no-repeat,no-repeat;
-  /* background-attachment:fixed e buggy pe mobile — nu mai e nevoie, elementul e deja position:fixed */
   overflow:hidden;
+  /* Previne orice recalculare de layout pe acest element */
+  contain: strict;
   will-change: transform;
   transform: translateZ(0);
 }

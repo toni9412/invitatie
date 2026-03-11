@@ -28,14 +28,32 @@
 
     // Fix pentru Instagram/Safari: blochează redimensionarea fundalului la apariția barelor mobile
     (function() {
+      // Setăm --vh pentru alte elemente (intro-lock etc.)
       function setVH() {
         var vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', vh + 'px');
       }
       setVH();
-      // Actualizează DOAR la rotire ecran, nu la scroll (când apar/dispar barele)
+
+      // --bg-h = înălțime fixă în pixeli, setată O SINGURĂ DATĂ.
+      // Adăugăm 150px buffer ca să acopere și viewport-ul maxim (când toolbar-ul dispare).
+      // Astfel background-size:cover nu mai recalculează niciodată.
+      var maxH = Math.max(
+        window.innerHeight,
+        window.screen ? (window.screen.availHeight || window.screen.height || 0) : 0
+      );
+      document.documentElement.style.setProperty('--bg-h', (maxH + 150) + 'px');
+
+      // Actualizează DOAR la rotire ecran, nu la scroll
       window.addEventListener('orientationchange', function() {
-        setTimeout(setVH, 300);
+        setTimeout(function() {
+          setVH();
+          var newMaxH = Math.max(
+            window.innerHeight,
+            window.screen ? (window.screen.availHeight || window.screen.height || 0) : 0
+          );
+          document.documentElement.style.setProperty('--bg-h', (newMaxH + 150) + 'px');
+        }, 400);
       });
     })();
   </script>
