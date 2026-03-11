@@ -168,8 +168,10 @@
       <section id="nasi" class="section container">
         <div class="reveal">
           <h2 class="section__title">Nași</h2>
-          <div class="card nasi hover-tilt">
+          <div class="card nasi-card">
+            <span class="nasi-card__ornament" aria-hidden="true">✦</span>
             <p class="nasi__names">Dumi și Alexandru Cleminte</p>
+            <p class="nasi__sub">Alături de noi, la fiecare pas</p>
           </div>
         </div>
       </section>
@@ -179,14 +181,20 @@
           <h2 class="section__title">Părinți</h2>
         </div>
         <div class="grid grid--2col">
-          <article class="card card--softshadow reveal hover-tilt">
-            <h3>Părinții miresei</h3>
-            <p><strong>Nela</strong> și <strong>Dumitru Onică</strong></p>
+          <article class="parinti-card reveal">
+            <span class="parinti-card__ornament" aria-hidden="true">✦ ✦ ✦</span>
+            <h3 class="parinti-card__label">Părinții miresei</h3>
+            <p class="parinti-card__names"><strong>Nela</strong> și <strong>Dumitru Onică</strong></p>
+            <p class="parinti-card__sub">Cu drag și mândrie</p>
+            <span class="parinti-card__line" aria-hidden="true"></span>
           </article>
-          <article class="card card--inmem card--softshadow reveal hover-tilt" style="--delay:120ms">
-            <h3>Părinții mirelui</h3>
-			<p><strong>† În amintirea Marinei și a lui Mihail Gortolomei</strong></p>
-            <p class="inmem__sub">– pomeniți cu drag și recunoștință</p>
+          <article class="parinti-card parinti-card--inmem reveal" style="--delay:120ms">
+            <div class="parinti-card__wings" aria-hidden="true"></div>
+            <span class="parinti-card__ornament" aria-hidden="true">✦ ✦ ✦</span>
+            <h3 class="parinti-card__label">Părinții mirelui</h3>
+            <p class="parinti-card__names"><strong>† În amintirea Marinei și a lui Mihail Gortolomei</strong></p>
+            <p class="parinti-card__sub">– pomeniți cu drag și recunoștință</p>
+            <span class="parinti-card__line" aria-hidden="true"></span>
           </article>
         </div>
       </section>
@@ -196,52 +204,78 @@
           <h2 class="section__title">Programul zilei</h2>
         </div>
         <ol class="timeline">
-		  <li class="timeline__item reveal">
-			<time>14:00</time>
-			<div>
-			  <h4>Cununia civilă</h4>
-			  <p>Biserica Ortodoxă „Sfinții Apostoli Petru și Pavel”, Ivești.</p>
-			  <a class="btn btn--soft" target="_blank" rel="noopener"
-				 href="https://maps.app.goo.gl/sMFWC4Unrv9LnxTC9">Vezi pe Google Maps</a>
-			</div>
-		  </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__marker">
+              <span class="timeline__icon">💍</span>
+              <time>14:00</time>
+            </div>
+            <div class="timeline__content">
+              <h4>Cununia civilă</h4>
+              <p>Biserica Ortodoxă „Sfinții Apostoli Petru și Pavel”, Ivești.</p>
+              <a class="btn btn--soft btn--map" target="_blank" rel="noopener"
+                 href="https://maps.app.goo.gl/sMFWC4Unrv9LnxTC9">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Vezi pe hartă
+              </a>
+            </div>
+          </li>
 
-		  <li class="timeline__item reveal" style="--delay:120ms">
-			<time>15:00</time>
-			<div>
-			  <h4>Cununia religioasă</h4>
-			  <p>Biserica Ortodoxă „Sfinții Apostoli Petru și Pavel”, Ivești.</p>
-			</div>
-		  </li>
+          <li class="timeline__item reveal" style="--delay:120ms">
+            <div class="timeline__marker">
+              <span class="timeline__icon">⛪</span>
+              <time>15:00</time>
+            </div>
+            <div class="timeline__content">
+              <h4>Cununia religioasă</h4>
+              <p>Biserica Ortodoxă „Sfinții Apostoli Petru și Pavel”, Ivești.</p>
+            </div>
+          </li>
 
-		  <li class="timeline__item reveal" style="--delay:240ms">
-			<time>19:00</time>
-			<div>
-			  <h4>Petrecerea</h4>
-			  <p>Palatul Elisee, Sala Bourbon, Bârlad — cină, dans și voie bună.</p>
-			  <a class="btn btn--soft" target="_blank" rel="noopener"
-				 href="https://maps.app.goo.gl/BTxBwgCRP4x8PHRW6">Vezi pe Google Maps</a>
-			</div>
-		  </li>
-		</ol>
+          <li class="timeline__item reveal" style="--delay:240ms">
+            <div class="timeline__marker">
+              <span class="timeline__icon">🥂</span>
+              <time>19:00</time>
+            </div>
+            <div class="timeline__content">
+              <h4>Petrecerea</h4>
+              <p>Palatul Elisee, Sala Bourbon, Bârlad — cină, dans și voie bună.</p>
+              <a class="btn btn--soft btn--map" target="_blank" rel="noopener"
+                 href="https://maps.app.goo.gl/BTxBwgCRP4x8PHRW6">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Vezi pe hartă
+              </a>
+            </div>
+          </li>
+        </ol>
       </section>
 
-      <section id="raspuns" class="section container">
-        <div class="reveal">
-          <h2 class="section__title">Răspuns</h2>
-          <p>Pentru a ne confirma prezența, vă rugăm să completați formularul. Răspunsurile dumneavoastră rămân confidențiale și sunt vizibile doar organizatorilor. Confirmarea poate fi transmisă până la data de <strong>17 mai 2026</strong>.</p>
+      <section id="raspuns" class="section section--soft container">
+        <div class="reveal raspuns-header">
+          <h2 class="section__title">Confirmă prezența</h2>
+          <p class="raspuns-intro">Ne-ar bucura enorm să vă avem alături. Confirmarea poate fi transmisă până la <strong>17 mai 2026</strong>.</p>
         </div>
 
         <div class="grid grid--2col">
-          <div class="card reveal">
-            <h3>Confirmare prin formular</h3>
-            <a class="btn btn--primary" target="_blank" rel="noopener" href="https://forms.gle/JApqvpR5pBAJxTFM6">Completează formularul</a>
+          <div class="raspuns-card raspuns-card--form reveal">
+            <span class="raspuns-card__icon">📝</span>
+            <h3 class="raspuns-card__title">Completează formularul</h3>
+            <p class="raspuns-card__text">Răspunsurile sunt confidențiale și vizibile doar pentru noi.</p>
+            <a class="btn btn--primary glow" target="_blank" rel="noopener" href="https://forms.gle/JApqvpR5pBAJxTFM6">Deschide formularul</a>
           </div>
-          <div class="card reveal" style="--delay:120ms">
-            <h3>Contact miri</h3>
-            <p>Ne puteți suna oricând pentru întrebări sau confirmări.</p>
-            <p><strong>Iulia:</strong> <a href="tel:+40751391832">+40 751 391 832</a></p>
-            <p><strong>Antonii:</strong> <a href="tel:+40745197444">+40 745 197 444</a></p>
+          <div class="raspuns-card reveal" style="--delay:120ms">
+            <span class="raspuns-card__icon">📞</span>
+            <h3 class="raspuns-card__title">Sau sună-ne direct</h3>
+            <p class="raspuns-card__text">Pentru orice întrebare sau confirmare.</p>
+            <div class="raspuns-contact">
+              <a class="raspuns-contact__link" href="tel:+40751391832">
+                <span class="raspuns-contact__name">Iulia</span>
+                <span class="raspuns-contact__nr">+40 751 391 832</span>
+              </a>
+              <a class="raspuns-contact__link" href="tel:+40745197444">
+                <span class="raspuns-contact__name">Antonii</span>
+                <span class="raspuns-contact__nr">+40 745 197 444</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -249,29 +283,62 @@
 
       <section id="informatii" class="section container">
         <div class="reveal">
-          <h2 class="section__title">Informații utile pentru oaspeți</h2>
+          <h2 class="section__title">Descoperă Bârladul</h2>
+          <p class="info-subtitle">Ați venit la nuntă, dar orașul merită și el o vizită.</p>
         </div>
-        <div class="grid grid--2col">
-          <article class="card reveal">
-            <h3>În Bârlad</h3>
-            <ul class="bullets">
-              <li><strong>Muzeul „Vasile Pârvan”</strong> – principalul obiectiv cultural al orașului</li>
-              <li><strong>Pavilionul Expozițional „Marcel Guguianu” &amp; Planetariul</strong> – artă și astronomie</li>
-              <li><strong>Teatrul „Victor Ion Popa”</strong> – simbol cultural local</li>
-              <li><strong>Grădina Zoologică Bârlad</strong> – atracție pentru familii</li>
-              <li><strong>Grădina Publică Bârlad</strong> – parc central, relaxare</li>
-            </ul>
+
+        <div class="discover-grid">
+
+          <article class="discover-card reveal" style="--delay:0ms">
+            <span class="discover-card__icon">🌿</span>
+            <h3 class="discover-card__title">Grădina Zoologică &amp; Grădina Publică</h3>
+            <p class="discover-card__text">Copiii vor fi în al nouălea cer. Adulții — pe bancă, la umbră, cu o înghețată. Win-win.</p>
+            <a class="discover-card__link" href="https://maps.app.goo.gl/1BnLpsMRkn7RhJUW9" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Vezi pe hartă
+            </a>
           </article>
 
-          <article class="card reveal" style="--delay:120ms">
-            <h3>Cazări în Bârlad</h3>
-            <ul class="bullets">
-              <li><strong>Hotel Moldova</strong></li>
-              <li><strong>Pensiunea Mira</strong></li>
-              <li><strong>Pensiunea Gallamar</strong></li>
-            </ul>
+          <article class="discover-card reveal" style="--delay:100ms">
+            <span class="discover-card__icon">🎭</span>
+            <h3 class="discover-card__title">Teatrul „Victor Ion Popa”</h3>
+            <p class="discover-card__text">Un reper al Bârladului, cu tradiție în spectacole de teatru și eventi culturale. Merită o plimbare pe acolo.</p>
+            <a class="discover-card__link" href="https://maps.app.goo.gl/e7Axc3L6uKubpE3cA" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Vezi pe hartă
+            </a>
           </article>
+
+          <article class="discover-card reveal" style="--delay:200ms">
+            <span class="discover-card__icon">🔭</span>
+            <h3 class="discover-card__title">Planetariul &amp; Observatorul Astronomic</h3>
+            <p class="discover-card__text">Parte din Muzeul „Vasile Pârvan”. Ideal pentru cei care vor să vadă stele… și ziua.</p>
+            <a class="discover-card__link" href="https://maps.app.goo.gl/E8ZfjjKgyhosbzhd6" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Vezi pe hartă
+            </a>
+          </article>
+
         </div>
+
+        <div class="reveal" style="--delay:300ms; margin-top: clamp(2rem, 4vw, 3rem);">
+          <h3 class="section__title" style="font-size:clamp(1.3rem,2.8vw,1.8rem)">Un pat cald după petrecere</h3>
+          <p class="info-subtitle">Două opțiuni verificate, aproape de locația evenimentului.</p>
+        </div>
+
+        <div class="cazari-grid">
+          <a class="cazare-chip reveal" style="--delay:350ms" href="https://www.booking.com/Share-6i1Fzk" target="_blank" rel="noopener">
+            <span class="cazare-chip__icon">🏨</span>
+            <span class="cazare-chip__name">Hotel Moldova</span>
+            <svg class="cazare-chip__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+          </a>
+          <a class="cazare-chip reveal" style="--delay:420ms" href="https://www.booking.com/Share-zClkfHr" target="_blank" rel="noopener">
+            <span class="cazare-chip__icon">🏡</span>
+            <span class="cazare-chip__name">Cazare Gallamar</span>
+            <svg class="cazare-chip__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+          </a>
+        </div>
+
       </section>
     </main>
 

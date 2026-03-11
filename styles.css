@@ -333,17 +333,40 @@ img{max-width:100%;display:block;border-radius:12px}
 
 .bullets li{margin:.35rem 0}
 
-.nasi{
+.nasi-card{
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
+  text-align:center;
+  padding:1.6rem 1.4rem 1.4rem;
+  border:1px solid rgba(203,174,122,.35);
+  background:rgba(255,255,255,.72);
+}
+
+.nasi-card__ornament{
+  display:block;
+  font-size:.9rem;
+  color:var(--gold);
+  letter-spacing:.6em;
+  margin-bottom:.6rem;
+  opacity:.7;
 }
 
 .nasi__names{
   margin:0;
   font-family:'Playfair Display',serif;
-  font-size:1.2rem;
+  font-size:clamp(1.2rem,2.5vw,1.5rem);
   color:var(--ink);
+  letter-spacing:.02em;
+}
+
+.nasi__sub{
+  margin:.4rem 0 0;
+  font-size:.9rem;
+  font-style:italic;
+  color:var(--muted);
+  letter-spacing:.03em;
 }
 
 .inmem__line{
@@ -376,19 +399,207 @@ img{max-width:100%;display:block;border-radius:12px}
   list-style:none;
   margin:0;
   padding:0;
-  border-left:3px solid #E8DCC7;
+  border-left:3px solid transparent;
+  border-image:linear-gradient(to bottom, var(--gold), rgba(203,174,122,.15)) 1;
+  max-width:640px;
+  margin-inline:auto;
 }
 
 .timeline__item{
   display:grid;
-  grid-template-columns:86px 1fr;
-  gap:1rem;
-  padding:1rem 0 1rem 1rem;
-  border-bottom:1px dashed rgba(0,0,0,.06);
+  grid-template-columns:auto 1fr;
+  gap:1.2rem;
+  padding:1.2rem 0 1.2rem 1.2rem;
+  position:relative;
 }
 
-.timeline__item:last-child{border-bottom:none}
-.timeline__item time{font-weight:600;color:var(--gold-ink)}
+/* Animated dot on the timeline line */
+.timeline__item::before{
+  content:"";
+  position:absolute;
+  left:-7px;
+  top:1.6rem;
+  width:11px;height:11px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 0 3px rgba(203,174,122,.2);
+  opacity:0;
+  transform:scale(0);
+  transition:all .5s ease;
+  transition-delay:var(--delay, 0ms);
+}
+
+.timeline__item.in-view::before{
+  opacity:1;
+  transform:scale(1);
+}
+
+.timeline__marker{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.25rem;
+  min-width:60px;
+}
+
+.timeline__icon{
+  font-size:1.6rem;
+  line-height:1;
+  filter:grayscale(.1);
+  transition:transform .3s ease;
+}
+
+.timeline__item:hover .timeline__icon{
+  transform:scale(1.2) rotate(-5deg);
+}
+
+.timeline__marker time{
+  font-family:'Playfair Display',serif;
+  font-weight:600;
+  font-size:1.1rem;
+  color:var(--gold-ink);
+}
+
+.timeline__content h4{
+  margin:0 0 .3rem;
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;
+  color:var(--ink);
+}
+
+.timeline__content p{
+  margin:0 0 .6rem;
+  color:#5a5a5a;
+  font-size:.95rem;
+}
+
+.btn--map{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:.88rem;
+  padding:.5rem .9rem;
+  transition:all .25s ease;
+}
+
+.btn--map:hover{
+  border-color:var(--gold);
+  transform:translateY(-1px);
+}
+
+.btn--map svg{flex-shrink:0}
+
+/* ─── Răspuns Section ─── */
+.raspuns-header{
+  text-align:center;
+  margin-bottom:1.2rem;
+}
+
+.raspuns-intro{
+  color:var(--muted);
+  font-size:1rem;
+  max-width:52ch;
+  margin-inline:auto;
+}
+
+.raspuns-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:1.8rem 1.4rem 1.5rem;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(203,174,122,.3);
+  border-radius:var(--radius);
+  box-shadow:var(--softshadow);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.raspuns-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 38px rgba(169,138,89,.12);
+  border-color:var(--gold);
+}
+
+/* Shimmer on hover */
+.raspuns-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg, transparent 20%, rgba(203,174,122,.08) 50%, transparent 80%);
+  pointer-events:none;
+}
+
+.raspuns-card:hover::before{
+  animation:cardShimmer .8s ease forwards;
+}
+
+.raspuns-card{position:relative;overflow:hidden}
+
+.raspuns-card__icon{
+  font-size:2rem;
+  line-height:1;
+  margin-bottom:.6rem;
+  display:block;
+  transition:transform .3s ease;
+}
+
+.raspuns-card:hover .raspuns-card__icon{
+  transform:scale(1.15) rotate(-4deg);
+}
+
+.raspuns-card__title{
+  margin:0 0 .4rem;
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;
+  color:var(--ink);
+}
+
+.raspuns-card__text{
+  margin:0 0 1rem;
+  font-size:.92rem;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.raspuns-contact{
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+  width:100%;
+}
+
+.raspuns-contact__link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.8rem;
+  padding:.6rem .9rem;
+  border-radius:10px;
+  background:rgba(203,174,122,.06);
+  border:1px solid rgba(203,174,122,.15);
+  text-decoration:none;
+  color:var(--ink);
+  transition:all .25s ease;
+}
+
+.raspuns-contact__link:hover{
+  background:rgba(203,174,122,.12);
+  border-color:var(--gold);
+  transform:translateX(3px);
+}
+
+.raspuns-contact__name{
+  font-weight:600;
+  font-size:.95rem;
+}
+
+.raspuns-contact__nr{
+  font-size:.9rem;
+  color:var(--gold-ink);
+  font-weight:500;
+}
 
 /* Countdown */
 .countdown{
@@ -973,32 +1184,314 @@ body.intro-active .skip-link{
 }
 
 
-#parinti .card--inmem{
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-#parinti .card--inmem::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  transform: translate(-50%, -50%);
-  width: 1100px;
-  height: 550px;
-  background: url("./wings.png") center center / contain no-repeat;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 0;
-}
-
-#parinti .card--inmem > *{
-  position: relative;
-  z-index: 1;
-}
-
 #raspuns .card .inmem__sub{
   margin-top: -0.35rem;
   margin-bottom: 1rem;
+}
+/* ─── Discover Bârlad Section ─── */
+.info-subtitle{
+  text-align:center;
+  color:var(--muted);
+  font-size:1.02rem;
+  margin:-.2rem 0 1.4rem;
+  font-style:italic;
+}
+
+.discover-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+}
+
+@media (max-width:900px){
+  .discover-grid{
+    grid-template-columns:1fr;
+    gap:.9rem;
+  }
+}
+
+.discover-card{
+  background:rgba(255,255,255,.72);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:1.4rem 1.3rem 1.2rem;
+  box-shadow:var(--softshadow);
+  display:flex;
+  flex-direction:column;
+  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.discover-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 40px rgba(0,0,0,.10);
+  border-color:var(--gold);
+}
+
+.discover-card__icon{
+  font-size:2rem;
+  line-height:1;
+  margin-bottom:.7rem;
+  display:block;
+  filter:grayscale(.15);
+  transition:transform .3s ease;
+}
+
+.discover-card:hover .discover-card__icon{
+  transform:scale(1.15) rotate(-4deg);
+}
+
+.discover-card__title{
+  margin:0 0 .5rem;
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;
+  line-height:1.3;
+  color:var(--ink);
+}
+
+.discover-card__text{
+  margin:0 0 .9rem;
+  font-size:.94rem;
+  line-height:1.55;
+  color:#5a5a5a;
+  flex:1;
+}
+
+.discover-card__link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:var(--gold-ink);
+  text-decoration:none;
+  font-size:.88rem;
+  font-weight:500;
+  letter-spacing:.02em;
+  transition:color .2s ease, gap .2s ease;
+}
+
+.discover-card__link:hover{
+  color:#8B6F3A;
+  gap:9px;
+}
+
+.discover-card__link svg{
+  flex-shrink:0;
+}
+
+/* ─── Cazări chips ─── */
+.cazari-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.7rem;
+  justify-content:center;
+  margin-top:.8rem;
+}
+
+.cazare-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  padding:.65rem 1.1rem .65rem .85rem;
+  background:rgba(255,255,255,.75);
+  border:1px solid var(--line);
+  border-radius:999px;
+  text-decoration:none;
+  color:var(--ink);
+  box-shadow:var(--softshadow);
+  transition:all .25s ease;
+}
+
+.cazare-chip:hover{
+  background:#fff;
+  border-color:var(--gold);
+  box-shadow:0 6px 20px rgba(169,138,89,.15);
+  transform:translateY(-2px);
+}
+
+.cazare-chip__icon{
+  font-size:1.2rem;
+  line-height:1;
+}
+
+.cazare-chip__name{
+  font-weight:500;
+  font-size:.95rem;
+}
+
+.cazare-chip__arrow{
+  opacity:.4;
+  transition:opacity .2s ease, transform .2s ease;
+  flex-shrink:0;
+}
+
+.cazare-chip:hover .cazare-chip__arrow{
+  opacity:.8;
+  transform:translate(2px, -2px);
+}
+
+/* ─── Părinți Cards (animated) ─── */
+.parinti-card{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:1.8rem 1.4rem 1.5rem;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(203,174,122,.3);
+  border-radius:var(--radius);
+  box-shadow:var(--softshadow);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.parinti-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 44px rgba(169,138,89,.13);
+  border-color:var(--gold);
+}
+
+/* Shimmer sweep on hover */
+.parinti-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg, transparent 20%, rgba(203,174,122,.08) 50%, transparent 80%);
+  transition:none;
+  pointer-events:none;
+  z-index:1;
+}
+
+.parinti-card:hover::before{
+  animation:cardShimmer .8s ease forwards;
+}
+
+@keyframes cardShimmer{
+  0%{left:-60%}
+  100%{left:120%}
+}
+
+/* Ornament trio */
+.parinti-card__ornament{
+  display:block;
+  font-size:.6rem;
+  color:var(--gold);
+  letter-spacing:.8em;
+  margin-bottom:.6rem;
+  opacity:0;
+  transform:scale(.5);
+  animation:ornamentPop .6s ease forwards;
+  animation-delay:calc(var(--delay, 0ms) + 400ms);
+}
+
+@keyframes ornamentPop{
+  0%{opacity:0;transform:scale(.5)}
+  60%{opacity:1;transform:scale(1.15)}
+  100%{opacity:.65;transform:scale(1)}
+}
+
+/* Label */
+.parinti-card__label{
+  margin:0 0 .4rem;
+  font-family:'Playfair Display',serif;
+  font-size:.95rem;
+  font-style:italic;
+  letter-spacing:.08em;
+  color:var(--muted);
+  font-weight:400;
+}
+
+/* Names */
+.parinti-card__names{
+  margin:0;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.05rem,2.2vw,1.25rem);
+  color:var(--ink);
+  line-height:1.4;
+}
+
+/* Subtitle */
+.parinti-card__sub{
+  margin:.35rem 0 0;
+  font-size:.88rem;
+  font-style:italic;
+  color:var(--muted);
+  letter-spacing:.03em;
+}
+
+/* Animated gold line at bottom */
+.parinti-card__line{
+  display:block;
+  width:0;
+  height:2px;
+  margin-top:.9rem;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius:2px;
+  animation:lineGrow 1.2s ease forwards;
+  animation-delay:calc(var(--delay, 0ms) + 600ms);
+}
+
+@keyframes lineGrow{
+  0%{width:0; opacity:0}
+  100%{width:60px; opacity:.5}
+}
+
+/* Memorial card override */
+.parinti-card--inmem{
+  background:#FBF9F5;
+  border-color:rgba(230,222,209,.6);
+}
+
+/* Animated wings */
+.parinti-card__wings{
+  position:absolute;
+  left:50%;top:65%;
+  transform:translate(-50%,-50%);
+  width:1100px;height:550px;
+  background:url("./wings.png") center/contain no-repeat;
+  opacity:0;
+  pointer-events:none;
+  z-index:0;
+  animation:wingsIn 2s ease forwards;
+  animation-delay:calc(var(--delay, 0ms) + 300ms);
+}
+
+@keyframes wingsIn{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.7);
+  }
+  60%{
+    opacity:.55;
+    transform:translate(-50%,-50%) scale(1.03);
+  }
+  100%{
+    opacity:.5;
+    transform:translate(-50%,-50%) scale(1);
+    animation:wingsFloat 6s ease-in-out infinite alternate;
+  }
+}
+
+/* Gentle floating after entrance */
+.parinti-card--inmem .parinti-card__wings{
+  animation:wingsIn 2s ease forwards, wingsFloat 6s ease-in-out 2.3s infinite alternate;
+  animation-delay:calc(var(--delay, 0ms) + 300ms), calc(var(--delay, 0ms) + 2300ms);
+}
+
+@keyframes wingsFloat{
+  0%{transform:translate(-50%,-50%) scale(1) translateY(0)}
+  100%{transform:translate(-50%,-50%) scale(1) translateY(-4px)}
+}
+
+.parinti-card--inmem > *:not(.parinti-card__wings){
+  position:relative;
+  z-index:1;
+}
+
+@media (max-width:900px){
+  .parinti-card__wings{
+    width:800px;
+    height:400px;
+  }
 }
