@@ -92,10 +92,8 @@ img{max-width:100%;display:block;border-radius:12px}
   position:relative;
   isolation:isolate;
   background:
-    radial-gradient(900px 420px at 10% -10%, #F4EADF, transparent 60%),
-    radial-gradient(700px 350px at 110% 10%, #EEF3EE, transparent 55%),
-    rgba(255,255,255,.20);
-  backdrop-filter:blur(8px);
+    radial-gradient(900px 420px at 10% -10%, rgba(244,234,223,.55), transparent 60%),
+    radial-gradient(700px 350px at 110% 10%, rgba(238,243,238,.45), transparent 55%);
   padding:clamp(3.6rem,7vw,7rem) 0 3rem;
   overflow:visible;
 }
@@ -244,8 +242,7 @@ img{max-width:100%;display:block;border-radius:12px}
 /* Sections */
 .section{padding:clamp(2.6rem,6vw,4.2rem) 0}
 .section--soft{
-  background:rgba(255,255,255,.30);
-  backdrop-filter:blur(4px);
+  background:rgba(255,255,255,.18);
 }
 
 .section__title{
