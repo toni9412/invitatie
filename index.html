@@ -25,6 +25,19 @@
 
   <script>
     window.__SITE_READY__ = false;
+
+    // Fix pentru Instagram/Safari: blochează redimensionarea fundalului la apariția barelor mobile
+    (function() {
+      function setVH() {
+        var vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', vh + 'px');
+      }
+      setVH();
+      // Actualizează DOAR la rotire ecran, nu la scroll (când apar/dispar barele)
+      window.addEventListener('orientationchange', function() {
+        setTimeout(setVH, 300);
+      });
+    })();
   </script>
 </head>
 
@@ -92,7 +105,6 @@
           <p class="eyebrow reveal">Vă invităm cu drag</p>
           <div class="title-wrap">
             <h1 class="hero__title reveal title-glint" style="--delay:120ms">Iulia <span>&amp;</span> Antonii</h1>
-            <div class="confetti" aria-hidden="true"></div>
           </div>
           <p class="date reveal" style="--delay:260ms">6 iunie 2026</p>
           <div class="countdown reveal" style="--delay:380ms" aria-label="Numărătoare inversă până la nuntă">
@@ -407,6 +419,7 @@
     }
 
     function launchConfetti(){
+      if (document.querySelectorAll('.confetti-piece').length > 20) return;
       for(let i=0;i<40;i++){
         const p=document.createElement('div');
         p.className='confetti-piece';
@@ -421,17 +434,6 @@
     document.querySelectorAll('.btn--confirm, .btn--primary').forEach(btn => {
 	  btn.addEventListener('click', launchConfetti);
 	});
-
-    let lastVH = window.innerHeight;
-    window.addEventListener('resize', () => {
-      const newVH = window.innerHeight;
-      if (Math.abs(newVH - lastVH) < 120) {
-        document.body.classList.add('freeze-parallax');
-      } else {
-        document.body.classList.remove('freeze-parallax');
-      }
-      lastVH = newVH;
-    });
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       clearInterval(intId);

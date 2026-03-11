@@ -296,6 +296,8 @@ img{max-width:100%;display:block;border-radius:12px}
   box-shadow:var(--shadow);
 }
 
+.card--softshadow{box-shadow:var(--softshadow)}
+
 #parinti .card,
 #parinti .card--inmem{box-shadow:var(--softshadow)}
 
@@ -631,8 +633,8 @@ img{max-width:100%;display:block;border-radius:12px}
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100lvh; /* keeps the same visual size when mobile browser bars show/hide */
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
   
@@ -642,12 +644,9 @@ img{max-width:100%;display:block;border-radius:12px}
   background-size:cover,cover;
   background-position:center,center;
   background-repeat:no-repeat,no-repeat;
-}
-
-@supports not (height: 100lvh) {
-  .bg-decor{
-    height: 100vh;
-  }
+  background-attachment: fixed;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .bg-decor::before{
@@ -712,26 +711,13 @@ img{max-width:100%;display:block;border-radius:12px}
   }
 }
 
-/* All visible content above stars */
+/* All visible content above background and stars */
 .site-header,
-.site,
 main,
-.page,
-.section,
-.hero,
 .footer,
 .container,
-.hero__inner,
-.section__title,
-.prose,
-.card,
-.timeline,
-.countdown,
 .addcal,
-.btn,
-#invitatie,
-#invitatie p,
-#invitatie h2{
+.btn{
   position:relative;
   z-index:2;
 }
@@ -753,7 +739,7 @@ main,
   #invitatie p{font-size:20px !important}
 }
 
-.freeze-parallax .bg-decor{transform:none !important}
+
 
 /* Intro envelope */
 .intro-envelope{
