@@ -632,9 +632,21 @@
   var img = box && box.querySelector('.envelope__photo');
   if(!box || !img) return;
 
+  var revealed = false;
   function reveal(){
-    box.classList.add('envelope--ready');
-    if(loader) loader.style.display='none';
+    if(revealed) return;
+    revealed = true;
+    // Double rAF — asigură că imaginea e complet randată înainte de a o face vizibilă
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        box.classList.add('envelope--ready');
+        if(loader) loader.style.display='none';
+        // Florile și sigiliul apar după ce plicul e deja vizibil
+        setTimeout(function(){
+          box.classList.add('envelope--animated');
+        }, 120);
+      });
+    });
   }
 
   // Daca e deja in cache / loaded

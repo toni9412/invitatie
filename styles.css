@@ -990,12 +990,13 @@ main,
   aspect-ratio:16 / 10;
   perspective:1200px;
   transform:translateZ(0);
-  /* Ascuns pana se incarca imaginea */
+  /* Ascuns pana se incarca imaginea — visibility ascunde complet, fara randare partiala */
+  visibility:hidden;
   opacity:0;
-  transition:opacity .45s ease;
 }
 
 .envelope--ready{
+  visibility:visible;
   opacity:1;
 }
 
@@ -1043,11 +1044,11 @@ main,
   animation-delay:.35s;
 }
 
-/* Pornesc animațiile DOAR după ce plicul e vizibil */
-.envelope--ready .flower--top-right{
+/* Pornesc animațiile DOAR după ce plicul e complet vizibil */
+.envelope--animated .flower--top-right{
   animation-name:flowerInTopRight;
 }
-.envelope--ready .flower--bottom-left{
+.envelope--animated .flower--bottom-left{
   animation-name:flowerInBottomLeft;
 }
 
@@ -1104,8 +1105,8 @@ main,
   animation:none;
 }
 
-/* Pornește animația sigiliului DOAR după ce plicul e vizibil */
-.envelope--ready .seal{
+/* Pornește animația sigiliului DOAR după ce plicul e complet vizibil */
+.envelope--animated .seal{
   animation:
     sealIn 1.2s ease-out .7s forwards,
     sealPulse 1.8s ease-in-out 2s infinite;
