@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <link rel="preload" as="image" href="Plic_Negru.webp">
+  <link rel="preload" as="image" href="Plic_Negru.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="sigiliu.png">
   
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
@@ -66,8 +67,9 @@
   <div class="bg-decor" aria-hidden="true"></div>
   <div id="introEnvelope" class="intro-envelope" aria-label="Deschide invitația" role="dialog" aria-modal="true">
     <div class="intro-envelope__wrap">
-		<div class="envelope envelope--image">
-			<img class="envelope__photo" src="Plic_Negru.webp" alt="Plic" fetchpriority="high" decoding="async" />
+		<div class="envelope-loader" id="envelopeLoader" aria-hidden="true"></div>
+		<div class="envelope envelope--image" id="envelopeBox">
+			<img class="envelope__photo" src="Plic_Negru.webp" alt="Plic" fetchpriority="high" decoding="sync" />
 		  
 			<img class="flower flower--top-right" src="floare1.png" alt="" />
 			<img class="flower flower--bottom-left" src="floare2.png" alt="" />
@@ -170,7 +172,7 @@
           <h2 class="section__title">Nași</h2>
           <div class="card nasi-card">
             <span class="nasi-card__ornament" aria-hidden="true">✦</span>
-            <p class="nasi__names">Dumi și Alexandru Cleminte</p>
+            <p class="nasi__names"><strong>Dumi și Alexandru Cleminte</strong></p>
             <p class="nasi__sub">Alături de noi, la fiecare pas</p>
           </div>
         </div>
@@ -184,7 +186,7 @@
           <article class="parinti-card reveal">
             <span class="parinti-card__ornament" aria-hidden="true">✦ ✦ ✦</span>
             <h3 class="parinti-card__label">Părinții miresei</h3>
-            <p class="parinti-card__names"><strong>Nela</strong> și <strong>Dumitru Onică</strong></p>
+            <p class="parinti-card__names"><strong>Nela și Dumitru Onică</strong></p>
             <p class="parinti-card__sub">Cu drag și mândrie</p>
             <span class="parinti-card__line" aria-hidden="true"></span>
           </article>
@@ -193,7 +195,7 @@
             <span class="parinti-card__ornament" aria-hidden="true">✦ ✦ ✦</span>
             <h3 class="parinti-card__label">Părinții mirelui</h3>
             <p class="parinti-card__names"><strong>† În amintirea Marinei și a lui Mihail Gortolomei</strong></p>
-            <p class="parinti-card__sub">– pomeniți cu drag și recunoștință</p>
+            <p class="parinti-card__sub">Pomeniți cu drag și recunoștință</p>
             <span class="parinti-card__line" aria-hidden="true"></span>
           </article>
         </div>
@@ -302,7 +304,7 @@
           <article class="discover-card reveal" style="--delay:100ms">
             <span class="discover-card__icon">🎭</span>
             <h3 class="discover-card__title">Teatrul „Victor Ion Popa”</h3>
-            <p class="discover-card__text">Un reper al Bârladului, cu tradiție în spectacole de teatru și eventi culturale. Merită o plimbare pe acolo.</p>
+            <p class="discover-card__text">Un reper al Bârladului, cu tradiție în spectacole de teatru și evenimente culturale. Merită o plimbare pe acolo.</p>
             <a class="discover-card__link" href="https://maps.app.goo.gl/e7Axc3L6uKubpE3cA" target="_blank" rel="noopener">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
               Vezi pe hartă
@@ -378,10 +380,35 @@
       });
     }
 
+    const isMobile = window.innerWidth <= 900;
     const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{ if (en.isIntersecting) en.target.classList.add('in-view'); });
-    }, { threshold: 0.15 });
+      entries.forEach(en=>{
+        if (en.isIntersecting) {
+          en.target.classList.add('in-view');
+          observer.unobserve(en.target);
+        }
+      });
+    }, { threshold: isMobile ? 0.01 : 0.15, rootMargin: isMobile ? '0px 0px 60px 0px' : '0px' });
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Fallback: dacă după 4s de la scroll un .reveal încă nu e vizibil, forțează-l
+    if (isMobile) {
+      let fallbackTimer;
+      function revealFallback() {
+        clearTimeout(fallbackTimer);
+        fallbackTimer = setTimeout(()=>{
+          document.querySelectorAll('.reveal:not(.in-view)').forEach(el=>{
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight + 100) {
+              el.classList.add('in-view');
+            }
+          });
+        }, 300);
+      }
+      window.addEventListener('scroll', revealFallback, {passive:true});
+      // Reveal inițial ce e deja vizibil
+      setTimeout(revealFallback, 500);
+    }
 
     const dataCeremonie = new Date('2026-06-06T14:30:00'); // local
 
@@ -505,11 +532,15 @@
 
     function launchConfetti(){
       if (document.querySelectorAll('.confetti-piece').length > 20) return;
-      for(let i=0;i<40;i++){
+      const isMob = window.innerWidth <= 768;
+      const count = isMob ? 20 : 40;
+      for(let i=0;i<count;i++){
         const p=document.createElement('div');
         p.className='confetti-piece';
-        p.style.left=(50+Math.random()*20-10)+'%';
-        p.style.top='50%';
+        const leftPct = 30 + Math.random() * 40;
+        p.style.left = leftPct + '%';
+        p.style.top = (window.scrollY + window.innerHeight * 0.4) + 'px';
+        p.style.position = 'absolute';
         p.style.backgroundColor=['#ffcc00','#ff6699','#66ccff','#99ff66','#ff9966'][Math.floor(Math.random()*5)];
         p.style.animationDuration=(0.8+Math.random())+'s';
         document.body.appendChild(p);
@@ -593,5 +624,31 @@
   }
 </script>
   
+
+<script>
+(function(){
+  var box = document.getElementById('envelopeBox');
+  var loader = document.getElementById('envelopeLoader');
+  var img = box && box.querySelector('.envelope__photo');
+  if(!box || !img) return;
+
+  function reveal(){
+    box.classList.add('envelope--ready');
+    if(loader) loader.style.display='none';
+  }
+
+  // Daca e deja in cache / loaded
+  if(img.complete && img.naturalWidth > 0){
+    reveal();
+  } else {
+    img.addEventListener('load', reveal);
+    img.addEventListener('error', reveal); // afiseaza oricum
+  }
+
+  // Fallback: afiseaza dupa 3s indiferent
+  setTimeout(reveal, 3000);
+})();
+</script>
+
 </body>
 </html>

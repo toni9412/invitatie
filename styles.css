@@ -822,11 +822,12 @@ img{max-width:100%;display:block;border-radius:12px}
 }
 
 .confetti-piece{
-  position:fixed;
+  position:absolute;
   width:10px;
   height:10px;
   border-radius:2px;
   z-index:9999;
+  pointer-events:none;
   animation:fallConfetti linear forwards;
 }
 
@@ -989,6 +990,30 @@ main,
   aspect-ratio:16 / 10;
   perspective:1200px;
   transform:translateZ(0);
+  /* Ascuns pana se incarca imaginea */
+  opacity:0;
+  transition:opacity .45s ease;
+}
+
+.envelope--ready{
+  opacity:1;
+}
+
+/* Loader subtil cat timp se incarca plicul */
+.envelope-loader{
+  position:absolute;
+  left:50%;top:50%;
+  width:28px;height:28px;
+  margin:-14px 0 0 -14px;
+  border:2.5px solid rgba(203,174,122,.25);
+  border-top-color:var(--gold);
+  border-radius:50%;
+  animation:envelopeSpin .8s linear infinite;
+  z-index:10;
+}
+
+@keyframes envelopeSpin{
+  to{transform:rotate(360deg)}
 }
 
 .envelope--image{position:relative}
@@ -1009,15 +1034,21 @@ main,
 .flower--top-right{
   top:clamp(8px,2vw,20px);
   right:clamp(var(--flower-offset-min), var(--flower-offset-fluid), var(--flower-offset-max));
-  animation-name:flowerInTopRight;
   animation-delay:.15s;
 }
 
 .flower--bottom-left{
   bottom:clamp(-16px,-1vw,-6px);
   left:clamp(var(--flower-offset-min), var(--flower-offset-fluid), var(--flower-offset-max));
-  animation-name:flowerInBottomLeft;
   animation-delay:.35s;
+}
+
+/* Pornesc animațiile DOAR după ce plicul e vizibil */
+.envelope--ready .flower--top-right{
+  animation-name:flowerInTopRight;
+}
+.envelope--ready .flower--bottom-left{
+  animation-name:flowerInBottomLeft;
 }
 
 @keyframes flowerInTopRight{
@@ -1070,6 +1101,11 @@ main,
     0 18px 26px rgba(0,0,0,.45),
     inset 0 2px 10px rgba(255,255,255,.12),
     inset 0 -10px 18px rgba(0,0,0,.22);
+  animation:none;
+}
+
+/* Pornește animația sigiliului DOAR după ce plicul e vizibil */
+.envelope--ready .seal{
   animation:
     sealIn 1.2s ease-out .7s forwards,
     sealPulse 1.8s ease-in-out 2s infinite;
@@ -1493,5 +1529,35 @@ body.intro-active .skip-link{
   .parinti-card__wings{
     width:800px;
     height:400px;
+  }
+}
+
+/* Mobile touch feedback (hover nu funcționează pe touch) */
+@media (hover:none) and (pointer:coarse){
+  .raspuns-card:active{
+    transform:translateY(-4px);
+    box-shadow:0 14px 38px rgba(169,138,89,.12);
+    border-color:var(--gold);
+  }
+  .raspuns-card:active .raspuns-card__icon{
+    transform:scale(1.15) rotate(-4deg);
+  }
+  .raspuns-card:active::before{
+    animation:cardShimmer .8s ease forwards;
+  }
+  .discover-card:active{
+    transform:translateY(-5px);
+    box-shadow:0 16px 40px rgba(0,0,0,.10);
+    border-color:var(--gold);
+  }
+  .parinti-card:active{
+    transform:translateY(-5px);
+    box-shadow:0 16px 44px rgba(169,138,89,.13);
+    border-color:var(--gold);
+  }
+  .cazare-chip:active{
+    background:#fff;
+    border-color:var(--gold);
+    transform:translateY(-2px);
   }
 }
